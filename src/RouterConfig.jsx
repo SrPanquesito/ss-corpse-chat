@@ -6,11 +6,11 @@ import {
 
 const RouterConfig = createBrowserRouter([
     {
-      path: "/",
+      path: "/register",
       element: <Register />
     },
     {
-      path: "login",
+      path: "/login",
       element: <Login />
     },
   ]);
