@@ -5,10 +5,13 @@ import {
 } from 'react-router-dom';
 import './index.css'
 
+import { MainConfigurationProvider } from './providers/MainConfigurationProvider';
 import RouterConfig from './RouterConfig';
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={RouterConfig} />
+    <MainConfigurationProvider>
+      <RouterProvider router={RouterConfig} />
+    </MainConfigurationProvider>
   </React.StrictMode>,
 )

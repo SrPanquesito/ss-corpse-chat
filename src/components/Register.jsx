@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
+import { useMainConfiguration, useMainConfigurationDispatch } from '../providers/MainConfigurationProvider';
+
 const Register = () => {
+    const mainConfiguration = useMainConfiguration();
+    const dispatchConfiguration = useMainConfigurationDispatch();
+
     return (
         <>
             <h3 className="font-bold text-xl text-gray-800">Register</h3>
@@ -34,6 +39,12 @@ const Register = () => {
                 <button
                     className="bg-emerald-400 border-2 border-emerald-400 hover:bg-emerald-300 hover:border-slate-3"
                     type="submit"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        dispatchConfiguration({
+                            type: 'added'
+                        });
+                    }}
                 >
                     Register
                 </button>
@@ -41,6 +52,11 @@ const Register = () => {
                 <div>
                     <span><Link to="/login">Login to your account</Link></span>
                 </div>
+
+                {/* TODO: Remove this comment and tag. Test purposes */}
+                <span>
+                    {JSON.stringify(mainConfiguration, null, 2)}
+                </span>
             </form>
         </>
     );
