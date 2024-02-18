@@ -52,7 +52,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Corpse chat is a web application that will allow users to maintain communication between them. Maintaining as an interactive base users who enjoy “dark” and horror music but not limited to that entertainment niche.
+Corpse chat is a web application that will allow users to maintain communication between them. Aimed at users who enjoy “dark” and horror music but not limited to that entertainment niche.
 Target audience will find features inside the application that will enable interaction between them to feel in a comfortable environment that understands their dark musical, movies, series, video games and hobbies.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -62,6 +62,8 @@ Target audience will find features inside the application that will enable inter
 ### Built With
 
 * [![React][React.js]][React-url]
+* [![Tailwind][Tailwind.css]][Tailwind-url]
+* [![Socket.io][Socket.io]][Socket-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -198,11 +200,7 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [Vue-url]: https://vuejs.org/
 [Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
 [Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
+[Tailwind.css]: https://img.shields.io/badge/Tailwind-011f4b?style=for-the-badge&logo=tailwindcss&logoColor=06B6D4
+[Tailwind-url]: https://tailwindcss.com/
+[Socket.io]: https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=socketdotio&logoColor=fff
+[Socket-url]: https://socket.io/

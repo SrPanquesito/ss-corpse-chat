@@ -1,13 +1,23 @@
 import {
     createBrowserRouter,
+    Outlet,
     redirect
   } from "react-router-dom";
-  import Login from './components/Login';
-  import Register from './components/Register';
+import Login from './components/Login';
+import Register from './components/Register';
+
+const Root = () => {
+  return (
+      <main className="dark">
+        <Outlet />
+      </main>
+  )
+}
 
 const RouterConfig = createBrowserRouter([
     {
       path: "/",
+      element: <Root />,
       children: [
         {
           index: true,
@@ -23,6 +33,6 @@ const RouterConfig = createBrowserRouter([
         }
       ]
     }
-  ]);
+]);
 
 export default RouterConfig;

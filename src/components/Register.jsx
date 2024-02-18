@@ -8,7 +8,7 @@ const Register = () => {
 
     return (
         <>
-            <h3 className="font-bold text-xl text-gray-800">Register</h3>
+            <h2 className="text-theme-light-500">Register</h2>
             <form>
                 <div>
                     <label htmlFor="username">Username</label>

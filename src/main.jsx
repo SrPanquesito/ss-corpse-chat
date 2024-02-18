@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import {
   RouterProvider
 } from 'react-router-dom';
-import './index.css'
+import './main.css'
 
 import { MainConfigurationProvider } from './providers/MainConfigurationProvider';
 import RouterConfig from './RouterConfig';

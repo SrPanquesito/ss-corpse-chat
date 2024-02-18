@@ -5,13 +5,13 @@
   "description": "Corpse Chat - Web UI - Monolithic Alpha",
   "license": "UNLICENSED",
   "author": {
-      "name": "Luis Diaz Reynoso",
-      "email": "no_reply@email.com"
+    "name": "Luis Diaz Reynoso",
+    "email": "no_reply@email.com"
   },
   "contributors": [
     {
-        "name": "Luis Diaz Reynoso",
-        "email": "no_reply@email.com"
+      "name": "Luis Diaz Reynoso",
+      "email": "no_reply@email.com"
     }
   ],
   "type": "module",
@@ -32,6 +32,7 @@
     "socket.io-client": "4.7.4"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "0.5.7",
     "@types/react": "18.2.55",
     "@types/react-dom": "18.2.19",
     "@vitejs/plugin-react": "4.2.1",
