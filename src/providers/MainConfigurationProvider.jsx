@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { createContext, useContext, useReducer } from 'react';
 
 const MainConfigurationContext = createContext(null);
@@ -13,7 +14,11 @@ export function MainConfigurationProvider({ children }) {
           </MainConfigurationDispatchContext.Provider>
         </MainConfigurationContext.Provider>
       );
-};
+}
+
+MainConfigurationProvider.propTypes = {
+    children: PropTypes.object.isRequired
+}
 
 export function useMainConfiguration() {
     return useContext(MainConfigurationContext);
@@ -35,6 +40,6 @@ function mainConfigurationReducer(mainConfiguration, action) {
             throw Error('Unknown action: ' + action.type);
         }
     }
-};
+}
 
 const initialMainConfiguration = {};
