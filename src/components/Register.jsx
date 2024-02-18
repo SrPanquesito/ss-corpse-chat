@@ -4,7 +4,13 @@ import { useMainConfiguration, useMainConfigurationDispatch } from '../providers
 
 const Register = () => {
     const mainConfiguration = useMainConfiguration();
-    const dispatchConfiguration = useMainConfigurationDispatch();
+    const mainConfigurationDispatch = useMainConfigurationDispatch();
+
+    const toggleDarkmode = (e) => {
+        e.preventDefault();
+        let action = mainConfiguration.darkmode ? 'disable' : 'enable';
+        mainConfigurationDispatch({type: 'darkmode/' + action});
+    };
 
     return (
         <>
@@ -38,14 +44,9 @@ const Register = () => {
                 <button
                     className="bg-emerald-400 border-2 border-emerald-400 hover:bg-emerald-300 hover:border-slate-3"
                     type="submit"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        dispatchConfiguration({
-                            type: 'added'
-                        });
-                    }}
+                    onClick={toggleDarkmode}
                 >
-                    Register
+                    Darkmode
                 </button>
 
                 <div>

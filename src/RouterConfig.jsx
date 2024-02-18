@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
     createBrowserRouter,
     Outlet,
@@ -5,10 +6,18 @@ import {
   } from "react-router-dom";
 import Login from './components/Login';
 import Register from './components/Register';
+import { useMainConfiguration, useMainConfigurationDispatch } from './providers/MainConfigurationProvider';
 
 const Root = () => {
+  const mainConfiguration = useMainConfiguration();
+  const mainConfigurationDispatch = useMainConfigurationDispatch();
+
+  useEffect(() => {
+    mainConfigurationDispatch({type: 'darkmode/status'});
+  }, [mainConfiguration.darkmode]);
+
   return (
-      <main className="dark">
+      <main className={mainConfiguration.darkmode ? "dark" : ""}>
         <Outlet />
       </main>
   )
