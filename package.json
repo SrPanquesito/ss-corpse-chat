@@ -1,7 +1,19 @@
 {
   "name": "ss-corpse-chat",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Corpse Web Chat UI - Monolithic Alpha",
+  "license": "UNLICENSED",
+  "author": {
+      "name": "Luis Diaz Reynoso",
+      "email": "no_reply@email.com"
+  },
+  "contributors": [
+    {
+        "name": "Luis Diaz Reynoso",
+        "email": "no_reply@email.com"
+    }
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite --port 4000",
