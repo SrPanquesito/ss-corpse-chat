@@ -5,7 +5,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="assets/images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Corpse Chat Web UI</h3>
@@ -14,10 +14,7 @@
     Web chat application.
     <br />
     Version: Monolithic Alpha.
-    <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
+    <br /><br />
     <a href="https://github.com/github_username/repo_name">View Demo</a>
   </p>
 </div>
@@ -58,7 +55,7 @@
 Corpse chat is a web application that will allow users to maintain communication between them. Maintaining as an interactive base users who enjoy “dark” and horror music but not limited to that entertainment niche.
 Target audience will find features inside the application that will enable interaction between them to feel in a comfortable environment that understands their dark musical, movies, series, video games and hobbies.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>v
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
