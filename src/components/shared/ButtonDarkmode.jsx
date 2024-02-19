@@ -1,13 +1,13 @@
-import { useMainConfiguration, useMainConfigurationDispatch } from '../../providers/MainConfigurationProvider';
+import { useSettings, useDispatchSettings } from '../../providers/SettingsProvider';
 
 const ButtonDarkmode = () => {
-    const mainConfiguration = useMainConfiguration();
-    const mainConfigurationDispatch = useMainConfigurationDispatch();
+    const settings = useSettings();
+    const dispatchSettings = useDispatchSettings();
 
     const toggleDarkmode = (e) => {
         e.preventDefault();
-        let action = mainConfiguration.darkmode ? 'disable' : 'enable';
-        mainConfigurationDispatch({type: 'darkmode/' + action});
+        let action = settings.darkmode ? 'disable' : 'enable';
+        dispatchSettings({type: 'darkmode/' + action});
     };
 
     return (
@@ -22,10 +22,10 @@ const ButtonDarkmode = () => {
                 className={`flex items-center justify-center
                 absolute top-0 bottom-0 w-7 h-7 my-auto mx-0 rounded-full transition-all 
                 shadow-button bg-yellow-50 dark:bg-slate-700 dark:shadow-slate-800 ` + 
-                (mainConfiguration.darkmode ? 'right-0' : 'right-1/2')}
+                (settings.darkmode ? 'right-0' : 'right-1/2')}
             >
                 <i className="text-orange-300 dark:text-slate-400">
-                    { mainConfiguration.darkmode ?
+                    { settings.darkmode ?
                         (
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z" />

@@ -6,19 +6,19 @@ import {
   } from "react-router-dom";
 import Login from './layouts/Login';
 import Register from './layouts/Register';
-import { useMainConfiguration, useMainConfigurationDispatch } from './providers/MainConfigurationProvider';
+import { useSettings, useDispatchSettings } from './providers/SettingsProvider';
 import ButtonDarkmode from './components/shared/ButtonDarkmode';
 
 const Root = () => {
-  const mainConfiguration = useMainConfiguration();
-  const mainConfigurationDispatch = useMainConfigurationDispatch();
+  const settings = useSettings();
+  const dispatchSettings = useDispatchSettings();
 
   useEffect(() => {
-    mainConfigurationDispatch({type: 'darkmode/status'});
-  }, [mainConfiguration.darkmode]);
+    dispatchSettings({type: 'darkmode/status'});
+  }, [settings.darkmode]);
 
   return (
-      <main className={`h-screen ` + (mainConfiguration.darkmode ? "dark" : "")}>
+      <main className={`h-screen ` + (settings.darkmode ? "dark" : "")}>
         <section className="fixed top-3 right-3 z-50">
           <ButtonDarkmode />
         </section>

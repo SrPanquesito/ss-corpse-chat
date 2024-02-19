@@ -1,15 +1,15 @@
-export const mainConfigurationInit = {
+export const settingsDefaultValues = {
     darkmode: false
 };
 
-export function mainConfigurationReducer(mainConfiguration, action) {
+export function settingsReducer(settings, action) {
     switch (action.type) {
         case 'darkmode/enable': {
             localStorage.setItem('theme', 'dark');
             // zinc-900
             document.body.style.background = "#18181b";
             return {
-                ...mainConfiguration,
+                ...settings,
                 darkmode: true
             };
         }
@@ -18,7 +18,7 @@ export function mainConfigurationReducer(mainConfiguration, action) {
             // gray-200
             document.body.style.background = "#e5e7eb";
             return {
-                ...mainConfiguration,
+                ...settings,
                 darkmode: false
             };
         }
@@ -30,7 +30,7 @@ export function mainConfigurationReducer(mainConfiguration, action) {
                 document.body.style.background = "#e5e7eb";
             }
             return {
-                ...mainConfiguration,
+                ...settings,
                 darkmode: darkmodeStatus
             };
         }
