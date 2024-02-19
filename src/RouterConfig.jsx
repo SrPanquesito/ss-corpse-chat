@@ -4,9 +4,10 @@ import {
     Outlet,
     redirect
   } from "react-router-dom";
-import Login from './components/Login';
-import Register from './components/Register';
+import Login from './layouts/Login';
+import Register from './layouts/Register';
 import { useMainConfiguration, useMainConfigurationDispatch } from './providers/MainConfigurationProvider';
+import ButtonDarkmode from './components/shared/ButtonDarkmode';
 
 const Root = () => {
   const mainConfiguration = useMainConfiguration();
@@ -17,7 +18,10 @@ const Root = () => {
   }, [mainConfiguration.darkmode]);
 
   return (
-      <main className={mainConfiguration.darkmode ? "dark" : ""}>
+      <main className={`h-screen ` + (mainConfiguration.darkmode ? "dark" : "")}>
+        <section className="fixed top-3 right-3 z-50">
+          <ButtonDarkmode />
+        </section>
         <Outlet />
       </main>
   )

@@ -1,15 +1,8 @@
 import { Link } from "react-router-dom";
 
-import { useMainConfiguration, useMainConfigurationDispatch } from '../providers/MainConfigurationProvider';
-
 const Register = () => {
-    const mainConfiguration = useMainConfiguration();
-    const mainConfigurationDispatch = useMainConfigurationDispatch();
-
-    const toggleDarkmode = (e) => {
+    const submitForm = (e) => {
         e.preventDefault();
-        let action = mainConfiguration.darkmode ? 'disable' : 'enable';
-        mainConfigurationDispatch({type: 'darkmode/' + action});
     };
 
     return (
@@ -44,7 +37,7 @@ const Register = () => {
                 <button
                     className="bg-emerald-400 border-2 border-emerald-400 hover:bg-emerald-300 hover:border-slate-3"
                     type="submit"
-                    onClick={toggleDarkmode}
+                    onClick={submitForm}
                 >
                     Darkmode
                 </button>
@@ -52,11 +45,6 @@ const Register = () => {
                 <div>
                     <span><Link to="/login">Login to your account</Link></span>
                 </div>
-
-                {/* TODO: Remove this comment and tag. Test purposes */}
-                <span>
-                    {JSON.stringify(mainConfiguration, null, 2)}
-                </span>
             </form>
         </>
     );

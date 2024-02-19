@@ -29,6 +29,12 @@ export default {
         'roboto': ['Roboto', 'sans-serif'],
         'raleway': ['Raleway', 'sans-serif'],
       },
+      boxShadow: {
+        'full': '0 0 15px rgb(0 0 0 / 0.25)',
+        'button': '0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f',
+        'base': '0.05em 0.05em 0.75em rgb(0 0 0 / 15%)',
+        'tiny': '0.05em 0.05em 0.2em rgb(0 0 0 / 20%)',
+      },
       colors: {
         theme: {
           light: {
