@@ -1,38 +1,72 @@
 import { Link } from "react-router-dom";
+import FormContainerAuth from "../components/public/FormContainerAuth";
 
 const Login = () => {
     return (
-        <section className="flex justify-center items-center h-full">
-            <div className="
-                flex flex-col justify-center items-center container w-10/12 md:w-8/12
-                shadow border rounded-md py-12 space-y-12
-                bg-zinc-50 dark:bg-gray-800 dark:border-slate-700 dark:shadow-slate-800"
-            >
-                <h3 className="text-gray-800">Login</h3>
-                <form className="space-y-6">
-                    <div>
-                        <label htmlFor="username">Username</label>
-                        <input type="text" id="username" placeholder="username" />
-                    </div>
-
-                    <div>
-                        <label htmlFor="password">Password</label>
-                        <input type="password" id="password" placeholder="password" />
-                    </div>
-
-                    <button
-                        className="bg-emerald-400 border-2 border-emerald-400 hover:bg-emerald-300 hover:border-slate-3"
-                        type="submit"
-                    >
-                        Login
-                    </button>
-
-                    <div>
-                        <span><Link to="/register">Don't have any account? Sign up here</Link></span>
-                    </div>
-                </form>
+        <FormContainerAuth>
+            <div className="flex flex-row justify-between items-center w-full md:justify-center">
+                <h3 className="text-sky-800 dark:text-zinc-100">Log in</h3>
+                <img className="w-12 md:hidden" 
+                    src="src/assets/images/logo.png" alt="" srcset="" />
             </div>
-        </section>
+            <form className="w-full space-y-4 py-4">
+                <div className="space-y-2">
+                    <label className="text-sm text-sky-800 dark:text-zinc-100" 
+                        htmlFor="username">Username</label>
+                    <input className="w-full rounded-xl py-2
+                        border-none 
+                        dark:border-solid dark:border-slate-700
+                        shadow-tiny shadow-zinc-300 
+                        dark:shadow-slate-800
+                        text-sm text-gray-500 placeholder:text-gray-300 
+                        dark:text-gray-400 dark:placeholder:text-gray-700
+                        dark:bg-zinc-900
+                        caret-sky-600
+                        dark:caret-sky-800
+                        focus:ring-sky-600
+                        dark:focus:ring-sky-800
+                        focus:outline-none"
+                        type="text" id="username" placeholder="Enter your username" />
+                </div>
+
+                <div className="space-y-2">
+                    <label className="text-sm text-sky-800 dark:text-zinc-100" 
+                        htmlFor="password">Password</label>
+                    <input className="w-full rounded-xl py-2
+                        border-none 
+                        dark:border-solid dark:border-slate-700
+                        shadow-tiny shadow-zinc-300 
+                        dark:shadow-slate-800
+                        text-sm text-gray-500 placeholder:text-gray-300 
+                        dark:text-gray-400 dark:placeholder:text-gray-700
+                        dark:bg-zinc-900
+                        caret-sky-600
+                        dark:caret-sky-800
+                        focus:ring-sky-600
+                        dark:focus:ring-sky-800
+                        focus:outline-none"
+                        type="password" id="password" placeholder="Enter your password" />
+                </div>
+
+                <button
+                    className="bg-emerald-400 border-2 border-emerald-400 hover:bg-emerald-300 hover:border-slate-3"
+                    type="submit"
+                >
+                    Login
+                </button>
+
+                <div>
+                    <Link
+                        className="text-sm text-sky-800 dark:text-zinc-100 
+                        hover:underline underline-offset-2 decoration-dotted
+                        "
+                        to="/register"
+                    >
+                        Don't have any account? Sign up here
+                    </Link>
+                </div>
+            </form>
+        </FormContainerAuth>
     );
 };
 
