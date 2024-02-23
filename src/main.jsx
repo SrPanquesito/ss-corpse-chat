@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import './main.css'
 
-import { SettingsProvider } from './providers/SettingsProvider';
+import { SettingsProvider } from './providers/settings';
 import RouterConfig from './RouterConfig';
 
 createRoot(document.getElementById('root')).render(

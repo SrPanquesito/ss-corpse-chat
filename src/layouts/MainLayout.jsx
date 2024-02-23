@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import {
     Outlet
   } from "react-router-dom";
-import { useSettings, useDispatchSettings } from '../providers/SettingsProvider';
-import ButtonDarkmode from '../components/shared/ButtonDarkmode';
-import AuthLayout from './public/AuthLayout';
+import { useSettings, useDispatchSettings } from '../providers/settings';
+import ButtonDarkmode from '../components/ButtonDarkmode';
+import MainAuthLayout from './public/auth/MainAuthLayout';
 
 const MainLayout = () => {
     const settings = useSettings();
@@ -19,9 +19,9 @@ const MainLayout = () => {
           <header className="fixed top-3 right-3 z-50">
             <ButtonDarkmode />
           </header>
-          <AuthLayout>
+          <MainAuthLayout>
             <Outlet />
-          </AuthLayout>
+          </MainAuthLayout>
         </main>
     )
 }

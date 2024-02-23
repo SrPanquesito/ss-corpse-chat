@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const AuthLayout = ({ children }) => {
+const MainAuthLayout = ({ children }) => {
     return (
       <section className="flex justify-between items-cente w-full h-full">
         <aside className="hidden md:flex flex-col justify-center items-center w-1/2 h-screen bg-gray-800">
@@ -17,8 +17,8 @@ const AuthLayout = ({ children }) => {
     );
 }
 
-AuthLayout.propTypes = {
+MainAuthLayout.propTypes = {
   children: PropTypes.object.isRequired
 }
 
-export default AuthLayout;
+export default MainAuthLayout;
