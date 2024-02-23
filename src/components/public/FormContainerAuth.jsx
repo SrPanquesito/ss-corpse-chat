@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const FormContainerAuth = ({ children }) => {
     return (
         <section className="flex justify-center items-center h-full">
@@ -11,6 +13,10 @@ const FormContainerAuth = ({ children }) => {
             </div>
         </section>
     )
+}
+
+FormContainerAuth.propTypes = {
+    children: PropTypes.object.isRequired
 }
 
 export default FormContainerAuth;

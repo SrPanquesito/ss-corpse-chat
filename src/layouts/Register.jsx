@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import FormContainerAuth from "../components/public/FormContainerAuth";
+import FormInputField from "../components/shared/form/FormInputField";
+import FormButton from "../components/shared/form/FormButton";
 
 const Register = () => {
     const submitForm = (e) => {
@@ -6,47 +9,76 @@ const Register = () => {
     };
 
     return (
-        <>
-            <h2 className="text-theme-light-500">Register</h2>
-            <form>
-                <div>
-                    <label htmlFor="username">Username</label>
-                    <input type="text" id="username" placeholder="username" />
+        <FormContainerAuth>
+            <div className="flex flex-row justify-between items-center w-full md:justify-center">
+                <h3 className="text-sky-800 dark:text-zinc-100">Register</h3>
+                <img className="w-12 md:hidden" 
+                    src="src/assets/images/logo.png" alt="" />
+            </div>
+            <form className="w-full space-y-4 py-4">
+                <div className="space-y-2">
+                    <FormInputField 
+                        id="username" 
+                        label="Username" 
+                        placeholder="Enter your username" 
+                        type="text"
+                    />
                 </div>
 
-                <div>
-                    <label htmlFor="email">Email</label>
-                    <input type="email" id="email" placeholder="email" />
+                <div className="space-y-2">
+                    <FormInputField 
+                        id="email" 
+                        label="Email" 
+                        placeholder="Enter your email" 
+                        type="text"
+                    />
                 </div>
 
-                <div>
-                    <label htmlFor="password">Password</label>
-                    <input type="password" id="password" placeholder="password" />
+                <div className="space-y-2">
+                    <FormInputField 
+                        id="password" 
+                        label="Password" 
+                        placeholder="Enter your password" 
+                        type="password"
+                    />
                 </div>
 
-                <div>
-                    <label htmlFor="confirm-password">Confirm password</label>
-                    <input type="password" id="confirm-password" placeholder="confirm-password" />
+                <div className="space-y-2">
+                    <FormInputField 
+                        id="confirm-password" 
+                        label="Confirm Password" 
+                        placeholder="Confirm your password" 
+                        type="password"
+                    />
                 </div>
 
-                <div>
-                    <label htmlFor="image">Profile picture</label>
-                    <input type="file" id="image" />
+                <div className="space-y-2">
+                    <FormInputField 
+                        id="image" 
+                        label="Profile picture" 
+                        placeholder="Upload profile picture" 
+                        type="file"
+                    />
                 </div>
 
-                <button
-                    className="bg-emerald-400 border-2 border-emerald-400 hover:bg-emerald-300 hover:border-slate-3"
+                <div className="pb-6">
+                    <Link
+                        className="text-sm text-sky-800 dark:text-zinc-100 
+                        hover:underline underline-offset-2 decoration-dotted
+                        "
+                        to="/login"
+                    >
+                        Login to your account
+                    </Link>
+                </div>
+
+                <FormButton
+                    text="Register"
                     type="submit"
                     onClick={submitForm}
-                >
-                    Darkmode
-                </button>
-
-                <div>
-                    <span><Link to="/login">Login to your account</Link></span>
-                </div>
+                />
             </form>
-        </>
+        </FormContainerAuth>
     );
 };
 
