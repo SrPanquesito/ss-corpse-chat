@@ -25,7 +25,8 @@ const FormButton = ({text, type, onSubmit}) => {
 
 FormButton.propTypes = {
     text: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired
+    type: PropTypes.string.isRequired,
+    onSubmit: PropTypes.func.isRequired
 }
 
 export default FormButton

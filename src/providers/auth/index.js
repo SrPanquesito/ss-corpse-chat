@@ -2,4 +2,4 @@ export {
     AuthProvider,
     useAuth,
     useDispatchAuth
-} from "./AuthProvider";
+} from './AuthProvider';

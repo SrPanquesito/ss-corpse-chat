@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import FormInputField from "components/form/FormInputField";
-import FormButton from "components/form/FormButton";
-import { useDispatchAuth } from "providers/auth";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import FormInputField from 'components/form/FormInputField';
+import FormButton from 'components/form/FormButton';
+import { useDispatchAuth } from 'providers/auth';
 
 const Register = () => {
     const [form, setForm] = useState({

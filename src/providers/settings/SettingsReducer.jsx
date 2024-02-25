@@ -7,7 +7,7 @@ export function settingsReducer(settings, action) {
         case 'darkmode/enable': {
             localStorage.setItem('theme', 'dark');
             // zinc-900
-            document.body.style.background = "#18181b";
+            document.body.style.background = '#18181b';
             return {
                 ...settings,
                 darkmode: true
@@ -16,7 +16,7 @@ export function settingsReducer(settings, action) {
         case 'darkmode/disable': {
             localStorage.removeItem('theme');
             // gray-200
-            document.body.style.background = "#e5e7eb";
+            document.body.style.background = '#e5e7eb';
             return {
                 ...settings,
                 darkmode: false
@@ -25,9 +25,9 @@ export function settingsReducer(settings, action) {
         case 'darkmode/status': {
             let darkmodeStatus = localStorage.getItem('theme') === 'dark';
             if (darkmodeStatus) {
-                document.body.style.background = "#18181b";
+                document.body.style.background = '#18181b';
             } else {
-                document.body.style.background = "#e5e7eb";
+                document.body.style.background = '#e5e7eb';
             }
             return {
                 ...settings,

@@ -29,6 +29,7 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "react/no-unescaped-entities": "off"
+        "react/no-unescaped-entities": "off",
+        "quotes": [2, "single", { "avoidEscape": true }]
     }
 }

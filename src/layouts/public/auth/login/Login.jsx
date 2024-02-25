@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import FormInputField from "components/form/FormInputField";
-import FormButton from "components/form/FormButton";
+import { Link } from 'react-router-dom';
+import FormInputField from 'components/form/FormInputField';
+import FormButton from 'components/form/FormButton';
 
 const Login = () => {
     return (

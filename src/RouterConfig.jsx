@@ -1,26 +1,26 @@
 import {
     createBrowserRouter,
     redirect
-  } from "react-router-dom";
+  } from 'react-router-dom';
 import Login from './layouts/public/auth/login/Login'
 import Register from './layouts/public/auth/register/Register';
 import MainLayout from './layouts/MainLayout';
 
 const RouterConfig = createBrowserRouter([
     {
-      path: "/",
+      path: '/',
       element: <MainLayout />,
       children: [
         {
           index: true,
-          loader: async () => redirect("/register")
+          loader: async () => redirect('/register')
         },
         {
-          path: "register",
+          path: 'register',
           element: <Register />
         },
         {
-          path: "login",
+          path: 'login',
           element: <Login />
         }
       ]
