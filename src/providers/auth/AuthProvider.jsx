@@ -6,10 +6,10 @@ const AuthContext = createContext(null);
 const AuthDispatchContext = createContext(null);
 
 export function AuthProvider({ children }) {
-    const [data, dispatchAuth] = useReducer(authReducer, authDefaultValues);
+    const [authData, dispatchAuth] = useReducer(authReducer, authDefaultValues);
 
     return (
-        <AuthContext.Provider value={data}>
+        <AuthContext.Provider value={authData}>
           <AuthDispatchContext.Provider value={dispatchAuth}>
             {children}
           </AuthDispatchContext.Provider>
