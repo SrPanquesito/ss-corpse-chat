@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import _ from 'lodash';
 import FormInputField from 'components/form/FormInputField';
 import FormButton from 'components/form/FormButton';
-import { useDispatchAuth } from 'providers/auth';
+import { useDispatchAuth } from 'providers/auth/AuthProvider';
 
 const Register = () => {
     const [form, setForm] = useState({
@@ -48,8 +49,6 @@ const Register = () => {
             type: 'register',
             data: formData
         })
-
-        console.log(form);
     };
 
     return (
@@ -101,7 +100,7 @@ const Register = () => {
 
                     <div className="space-y-2">
                         <FormInputField 
-                            id="confirm-password" 
+                            id="confirmPassword" 
                             label="Confirm Password" 
                             placeholder="Confirm your password" 
                             type="password"

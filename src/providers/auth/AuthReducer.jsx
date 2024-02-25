@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+const SERVER_URL = import.meta.env.VITE_CORPSE_SERVER_BASE_URL;
+
 export const authDefaultValues = {
 };
 
@@ -22,7 +24,7 @@ async function registerUser(data) {
         const headers = {
             'Content-Type': 'application/json'
         };
-        const response = await axios.post('http://localhost:3001/api/auth/register', data, { headers })
+        const response = await axios.post(SERVER_URL + '/api/auth/register', data, { headers })
         return response.data;
     } catch(e) {
         throw Error(e);

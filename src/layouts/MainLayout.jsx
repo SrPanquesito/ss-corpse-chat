@@ -5,6 +5,7 @@ import {
 import { useSettings, useDispatchSettings } from 'providers/settings';
 import ButtonDarkmode from 'components/ButtonDarkmode';
 import MainAuthLayout from './public/auth/MainAuthLayout';
+import { AuthProvider } from 'providers/auth';
 
 const MainLayout = () => {
     const settings = useSettings();
@@ -19,9 +20,11 @@ const MainLayout = () => {
           <header className="fixed top-3 right-3 z-50">
             <ButtonDarkmode />
           </header>
-          <MainAuthLayout>
-            <Outlet />
-          </MainAuthLayout>
+          <AuthProvider>
+            <MainAuthLayout>
+              <Outlet />
+            </MainAuthLayout>
+          </AuthProvider>
         </main>
     )
 }
