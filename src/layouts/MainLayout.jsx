@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import {
     Outlet
   } from "react-router-dom";
-import { useSettings, useDispatchSettings } from '../providers/settings';
-import ButtonDarkmode from '../components/ButtonDarkmode';
+import { useSettings, useDispatchSettings } from 'providers/settings';
+import ButtonDarkmode from 'components/ButtonDarkmode';
 import MainAuthLayout from './public/auth/MainAuthLayout';
 
 const MainLayout = () => {

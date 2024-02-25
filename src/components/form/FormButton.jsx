@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const FormButton = ({text, type}) => {
+const FormButton = ({text, type, onSubmit}) => {
     return (
         <button
                 className="w-full py-3 px-4
@@ -16,6 +16,7 @@ const FormButton = ({text, type}) => {
                 dark:hover:bg-sky-950
                 transition-all duration-300 ease-in-out"
                 type={type}
+                onClick={onSubmit}
             >
                 {text}
         </button>

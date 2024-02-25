@@ -1,10 +1,55 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import FormInputField from "../../../../components/form/FormInputField";
-import FormButton from "../../../../components/form/FormButton";
+import FormInputField from "components/form/FormInputField";
+import FormButton from "components/form/FormButton";
+import { useDispatchAuth } from "providers/auth";
 
 const Register = () => {
+    const [form, setForm] = useState({
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        image: ''
+    });
+    const [loadImage, setLoadImage] = useState('');
+    const dispatchAuth = useDispatchAuth();
+
+    const inputHandler = (e) => {
+        const { id, value } = e.target;
+        setForm({ ...form, [id]: value });
+    };
+
+    const fileHandler = (e) => {
+        if (e.target.files.length !== 0) {
+            const file = e.target.files[0];
+            setForm({ ...form, [e.target.id]: file });
+        }
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            setLoadImage(reader.result);
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    };
+
     const submitForm = (e) => {
         e.preventDefault();
+
+        const { username, email, password, confirmPassword, image } = form;
+        const formData = new FormData();
+        formData.append('username', username);
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('confirmPassword', confirmPassword);
+        formData.append('image', image);
+
+        dispatchAuth({
+            type: 'register',
+            data: formData
+        })
+
+        console.log(form);
     };
 
     return (
@@ -27,6 +72,8 @@ const Register = () => {
                             label="Username" 
                             placeholder="Enter your username" 
                             type="text"
+                            value={form.username}
+                            onChangeHandler={inputHandler}
                         />
                     </div>
 
@@ -36,6 +83,8 @@ const Register = () => {
                             label="Email" 
                             placeholder="Enter your email" 
                             type="text"
+                            value={form.email}
+                            onChangeHandler={inputHandler}
                         />
                     </div>
 
@@ -45,6 +94,8 @@ const Register = () => {
                             label="Password" 
                             placeholder="Enter your password" 
                             type="password"
+                            value={form.password}
+                            onChangeHandler={inputHandler}
                         />
                     </div>
 
@@ -54,6 +105,8 @@ const Register = () => {
                             label="Confirm Password" 
                             placeholder="Confirm your password" 
                             type="password"
+                            value={form.confirmPassword}
+                            onChangeHandler={inputHandler}
                         />
                     </div>
 
@@ -63,6 +116,8 @@ const Register = () => {
                             label="Profile picture" 
                             placeholder="Upload profile picture" 
                             type="file"
+                            value={loadImage}
+                            onChangeHandler={fileHandler}
                         />
                     </div>
 
@@ -80,7 +135,7 @@ const Register = () => {
                     <FormButton
                         text="Register"
                         type="submit"
-                        onClick={submitForm}
+                        onSubmit={submitForm}
                     />
                 </form>
             </div>

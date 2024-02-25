@@ -1,4 +1,4 @@
-import { useSettings, useDispatchSettings } from '../providers/settings';
+import { useSettings, useDispatchSettings } from 'providers/settings';
 
 const ButtonDarkmode = () => {
     const settings = useSettings();
