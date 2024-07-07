@@ -65,6 +65,9 @@ Target audience will find features inside the application that will enable inter
 * [![Tailwind][Tailwind.css]][Tailwind-url]
 * [![Socket.io][Socket.io]][Socket-url]
 
+Icons used:
+[https://heroicons.com/](https://heroicons.com/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -115,12 +118,26 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 
 <!-- ROADMAP -->
-## Roadmap
+## Roadmap (To-do)
+Or where did I last leave the project?
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [x] Routing and context configuration
+- [x] Tailwind configuration (Palette, fonts, etc)
+- [x] Darkmode configuration
+- [x] Configure linter
+- [ ] Configure jest
+- [x] Register page
+    - [x] CSS
+    - [x] Form handling
+    - [ ] Form validation
+    - [ ] Backend connection
+    - [ ] Limit calls to BE
+- [ ] Login page
+    - [x] CSS
+    - [ ] Form handling
+    - [ ] Form validation
+    - [ ] Backend connection
+    - [ ] Limit calls to BE
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 

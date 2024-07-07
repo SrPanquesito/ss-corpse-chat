@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import _ from 'lodash';
+// import _ from 'lodash'; // (.isEqual) Use for password and confirmPassword match before attempting call to backend
 import FormInputField from 'components/form/FormInputField';
 import FormButton from 'components/form/FormButton';
 import { useDispatchAuth } from 'providers/auth/AuthProvider';

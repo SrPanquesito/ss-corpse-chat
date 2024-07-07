@@ -15,6 +15,10 @@
     }
   ],
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
     "start": "vite --port 4000",
     "dev": "vite --port 4000",
