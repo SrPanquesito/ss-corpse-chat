@@ -1,32 +1,23 @@
-import axios from 'axios';
-
-const SERVER_URL = import.meta.env.VITE_CORPSE_SERVER_BASE_URL;
+import {registerUser} from './AuthActions';
 
 export const authDefaultValues = {
+    userData: {},
+    loading: true,
+    authenticated: false,
+    error: null
 };
 
-export function authReducer(authData, action) {
+export async function authReducer(authData, action) {
     switch (action.type) {
         case 'register': {
-            registerUser(action.data);
+            const responseData = await registerUser(action.data);
             return {
-                ...authData
+                ...authData,
+                ...responseData
             };
         }
         default: {
             throw Error('Unknown action: ' + action.type);
         }
-    }
-}
-
-async function registerUser(data) {
-    try {
-        const headers = {
-            'Content-Type': 'application/json'
-        };
-        const response = await axios.post(SERVER_URL + '/api/auth/register', data, { headers })
-        return response.data;
-    } catch(e) {
-        throw Error(e);
     }
 }
