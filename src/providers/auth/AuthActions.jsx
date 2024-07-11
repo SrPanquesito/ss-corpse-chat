@@ -2,25 +2,40 @@ import axios from 'axios';
 
 const SERVER_URL = import.meta.env.VITE_CORPSE_SERVER_BASE_URL;
 
-async function registerUser(data) {
+async function userRegister(data) {
     try {
-        const response = await axios.post(SERVER_URL + '/api/auth/register', data)
-        // localStorage.setItem('authToken', response.data.token);
+        const response = await axios.post(SERVER_URL + '/api/auth/register', data);
+        const {token, userId} = response.data;
+        localStorage.setItem('authToken', token);
 
         return {
-            userData: {id: response.data.userId},
-            authenticate: true,
-            loading: false,
+            data: {
+                id: userId,
+                token
+            },
             error: null
         };
     } catch(error) {
-        return {
-            userData: {},
-            authenticate: false,
-            loading: true,
-            error: error.response.data
-        };
+        return {data: {}, error: error.response.data};
     }
 }
 
-export { registerUser };
+async function userLogin(data) {
+    try {
+        const response = await axios.post(SERVER_URL + '/api/auth/login', data)
+        const {token, userId} = response.data;
+        localStorage.setItem('authToken', token);
+
+        return {
+            data: {
+                id: userId,
+                token
+            },
+            error: null
+        };
+    } catch(error) {
+        return {data: {}, error: error.response.data};
+    }
+}
+
+export { userRegister, userLogin };

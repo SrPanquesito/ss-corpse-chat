@@ -1,4 +1,4 @@
-import {registerUser} from './AuthActions';
+import {userRegister, userLogin} from './AuthActions';
 
 export const authDefaultValues = {
     userData: {},
@@ -10,11 +10,26 @@ export const authDefaultValues = {
 export async function authReducer(authData, action) {
     switch (action.type) {
         case 'register': {
-            const responseData = await registerUser(action.data);
+            const {data, error} = await userRegister(action.data);
+
             return {
                 ...authData,
-                ...responseData
-            };
+                userData: data,
+                authenticate: !!error,
+                loading: !!data,
+                error: error ? error : {message: 'An error occurred'}
+            }
+        }
+        case 'login': {
+            const {data, error} = await userLogin(action.data);
+
+            return {
+                ...authData,
+                userData: data,
+                authenticate: !!error,
+                loading: !!data,
+                error: error ? error : {message: 'An error occurred'}
+            }
         }
         default: {
             throw Error('Unknown action: ' + action.type);
