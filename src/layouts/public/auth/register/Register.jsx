@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 // import _ from 'lodash'; // (.isEqual) Use for password and confirmPassword match before attempting call to backend
 import FormInputField from 'components/form/FormInputField';
 import FormButton from 'components/form/FormButton';
-import { useDispatchAuth } from 'providers/auth/AuthProvider';
+import { useDispatchAuth, useAuth } from 'providers/auth/AuthProvider';
+import { userRegister } from 'providers/auth/AuthActions';
+import { useAlert } from 'react-alert'
 
 const Register = () => {
     const [form, setForm] = useState({
@@ -15,6 +17,18 @@ const Register = () => {
     });
     const [loadImage, setLoadImage] = useState('');
     const dispatchAuth = useDispatchAuth();
+    const auth = useAuth();
+    const alert = useAlert();
+
+    // useEffect(() => {
+    //     if (auth.isAuthenticated) {
+    //         alert.success('Registration successful');
+    //     } else {
+    //         if (auth.error) {
+    //             alert.error(error?.message);
+    //         }
+    //     }
+    // }, [auth.data, auth.error, auth.isAuthenticated]);
 
     const inputHandler = (e) => {
         const { id, value } = e.target;
@@ -34,7 +48,7 @@ const Register = () => {
         reader.readAsDataURL(e.target.files[0]);
     };
 
-    const submitForm = (e) => {
+    const submitForm = async (e) => {
         e.preventDefault();
 
         const { username, email, password, confirmPassword, image } = form;
@@ -45,10 +59,11 @@ const Register = () => {
         formData.append('confirmPassword', confirmPassword);
         formData.append('image', image);
 
+        // const {data, error} = await userRegister(formData);
         dispatchAuth({
             type: 'register',
             data: formData
-        })
+        });
     };
 
     return (

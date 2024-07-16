@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const SERVER_URL = import.meta.env.VITE_CORPSE_SERVER_BASE_URL;
 
-async function userRegister(data) {
+async function userRegister(payload) {
     try {
-        const response = await axios.post(SERVER_URL + '/api/auth/register', data);
+        const response = await axios.post(SERVER_URL + '/api/auth/register', payload);
         const {token, userId} = response.data;
         localStorage.setItem('authToken', token);
 
@@ -16,13 +16,16 @@ async function userRegister(data) {
             error: null
         };
     } catch(error) {
-        return {data: {}, error: error.response.data};
+        return {
+            data: {}, 
+            error: error?.response?.data || error?.message
+        };
     }
 }
 
-async function userLogin(data) {
+async function userLogin(payload) {
     try {
-        const response = await axios.post(SERVER_URL + '/api/auth/login', data)
+        const response = await axios.post(SERVER_URL + '/api/auth/login', payload)
         const {token, userId} = response.data;
         localStorage.setItem('authToken', token);
 
@@ -34,7 +37,10 @@ async function userLogin(data) {
             error: null
         };
     } catch(error) {
-        return {data: {}, error: error.response.data};
+        return {
+            data: {}, 
+            error: error?.response?.data || error?.message
+        };
     }
 }
 
