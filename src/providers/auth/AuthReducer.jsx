@@ -1,7 +1,7 @@
 import { userRegister, userLogin } from './AuthActions';
 import { jwtDecode } from "jwt-decode";
-import { useCallback } from 'react';
 
+// Retrieve live session and setup token for axios requests
 const getToken = localStorage.getItem('authToken');
 if (getToken) {
     const tokenDecode = jwtDecode(getToken);
@@ -17,33 +17,24 @@ if (getToken) {
 }
 console.warn(getToken);
 
+const defaultError = {message: 'An error occurred'};
+
 export const authDefaultValues = {
     user: {},
-    isLoading: true,
     isAuthenticated: false,
     error: null
 };
 
-export const authReducer = useCallback(async (authData, action) => {
+export const authReducer = async (authData, action) => {
     switch (action.type) {
-        // case 'update/values': {
-        //     return {
-        //         ...authData,
-        //         user: action.data,
-        //         isAuthenticated: !!action.error,
-        //         isLoading: !!action.data,
-        //         error: action.error ? action.error : 'An error occurred'
-        //     }
-        // }
         case 'register': {
             const {data, error} = await userRegister(action.data);
 
             return {
                 ...authData,
                 user: data,
-                isAuthenticated: !!error,
-                isLoading: !!data,
-                error: error ? error : 'An error occurred'
+                isAuthenticated: !!data?.token,
+                error: error ? error : defaultError
             }
         }
         case 'login': {
@@ -52,13 +43,12 @@ export const authReducer = useCallback(async (authData, action) => {
             return {
                 ...authData,
                 user: data,
-                isAuthenticated: !!error,
-                isLoading: !!data,
-                error: error ? error : 'An error occurred'
+                isAuthenticated: !!data?.token,
+                error: error ? error : defaultError
             }
         }
         default: {
             throw Error('Unknown action: ' + action.type);
         }
     }
-}, []);
+};

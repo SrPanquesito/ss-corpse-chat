@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const SERVER_URL = import.meta.env.VITE_CORPSE_SERVER_BASE_URL;
 
-async function userRegister(payload) {
+const userRegister = async (payload) => {
     try {
         const response = await axios.post(SERVER_URL + '/api/auth/register', payload);
         const {token, userId} = response.data;
@@ -17,13 +17,13 @@ async function userRegister(payload) {
         };
     } catch(error) {
         return {
-            data: {}, 
-            error: error?.response?.data || error?.message
+            data: {},
+            error: error?.response?.data || error
         };
     }
 }
 
-async function userLogin(payload) {
+const userLogin = async(payload) => {
     try {
         const response = await axios.post(SERVER_URL + '/api/auth/login', payload)
         const {token, userId} = response.data;
@@ -39,7 +39,7 @@ async function userLogin(payload) {
     } catch(error) {
         return {
             data: {}, 
-            error: error?.response?.data || error?.message
+            error: error?.response?.data || error
         };
     }
 }

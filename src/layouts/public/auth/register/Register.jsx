@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import FormInputField from 'components/form/FormInputField';
 import FormButton from 'components/form/FormButton';
 import { useDispatchAuth, useAuth } from 'providers/auth/AuthProvider';
-import { userRegister } from 'providers/auth/AuthActions';
 import { useAlert } from 'react-alert'
 
 const Register = () => {
@@ -17,18 +16,18 @@ const Register = () => {
     });
     const [loadImage, setLoadImage] = useState('');
     const dispatchAuth = useDispatchAuth();
-    const auth = useAuth();
+    const {user: authenticatedUser, error: authenticatedError, isAuthenticated} = useAuth();
     const alert = useAlert();
 
-    // useEffect(() => {
-    //     if (auth.isAuthenticated) {
-    //         alert.success('Registration successful');
-    //     } else {
-    //         if (auth.error) {
-    //             alert.error(error?.message);
-    //         }
-    //     }
-    // }, [auth.data, auth.error, auth.isAuthenticated]);
+    useEffect(() => {
+        if (isAuthenticated && authenticatedUser?.id) {
+            alert.success('Registration successful');
+        } else {
+            if (authenticatedError?.message) {
+                alert.error(authenticatedError.message);
+            }
+        }
+    }, [authenticatedError, isAuthenticated]);
 
     const inputHandler = (e) => {
         const { id, value } = e.target;
@@ -59,7 +58,6 @@ const Register = () => {
         formData.append('confirmPassword', confirmPassword);
         formData.append('image', image);
 
-        // const {data, error} = await userRegister(formData);
         dispatchAuth({
             type: 'register',
             data: formData
