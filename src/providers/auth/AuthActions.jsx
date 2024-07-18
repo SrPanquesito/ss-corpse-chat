@@ -16,9 +16,12 @@ const userRegister = async (payload) => {
             error: null
         };
     } catch(error) {
+        if (error?.response?.data?.data?.length > 0) {
+            error.message = `${error.response.data.data[0].msg} for field: ${error.response.data.data[0].path}`;
+        }
         return {
             data: {},
-            error: error?.response?.data || error
+            error
         };
     }
 }
@@ -37,9 +40,12 @@ const userLogin = async(payload) => {
             error: null
         };
     } catch(error) {
+        if (error?.response?.data?.data?.length > 0) {
+            error.message = `${error.response.data.data[0].msg} for field: ${error.response.data.data[0].path}`;
+        }
         return {
             data: {}, 
-            error: error?.response?.data || error
+            error
         };
     }
 }

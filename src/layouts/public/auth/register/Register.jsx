@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import _ from 'lodash'; // (.isEqual) Use for password and confirmPassword match before attempting call to backend
 import FormInputField from 'components/form/FormInputField';
 import FormButton from 'components/form/FormButton';
@@ -7,6 +7,7 @@ import { useDispatchAuth, useAuth } from 'providers/auth/AuthProvider';
 import { useAlert } from 'react-alert'
 
 const Register = () => {
+    const navigate = useNavigate();
     const [form, setForm] = useState({
         username: '',
         email: '',
@@ -22,10 +23,12 @@ const Register = () => {
     useEffect(() => {
         if (isAuthenticated && authenticatedUser?.id) {
             alert.success('Registration successful');
-        } else {
-            if (authenticatedError?.message) {
-                alert.error(authenticatedError.message);
-            }
+            setTimeout(() => {
+                navigate('/home');
+            }, 2000);
+        }
+        if (authenticatedError?.message) {
+            alert.error(authenticatedError.message);
         }
     }, [authenticatedError, isAuthenticated]);
 
@@ -47,7 +50,7 @@ const Register = () => {
         reader.readAsDataURL(e.target.files[0]);
     };
 
-    const submitForm = async (e) => {
+    const submitForm = (e) => {
         e.preventDefault();
 
         const { username, email, password, confirmPassword, image } = form;

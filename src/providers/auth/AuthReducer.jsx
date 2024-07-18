@@ -1,6 +1,13 @@
 import { userRegister, userLogin } from './AuthActions';
 import { jwtDecode } from "jwt-decode";
 
+export const authDefaultValues = {
+    user: {},
+    isAuthenticated: false,
+    error: null
+};
+
+
 // Retrieve live session and setup token for axios requests
 const getToken = localStorage.getItem('authToken');
 if (getToken) {
@@ -17,13 +24,6 @@ if (getToken) {
 }
 console.warn(getToken);
 
-const defaultError = {message: 'An error occurred'};
-
-export const authDefaultValues = {
-    user: {},
-    isAuthenticated: false,
-    error: null
-};
 
 export const authReducer = async (authData, action) => {
     switch (action.type) {
@@ -34,7 +34,7 @@ export const authReducer = async (authData, action) => {
                 ...authData,
                 user: data,
                 isAuthenticated: !!data?.token,
-                error: error ? error : defaultError
+                error
             }
         }
         case 'login': {
@@ -44,7 +44,7 @@ export const authReducer = async (authData, action) => {
                 ...authData,
                 user: data,
                 isAuthenticated: !!data?.token,
-                error: error ? error : defaultError
+                error
             }
         }
         default: {
