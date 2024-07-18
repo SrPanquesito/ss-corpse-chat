@@ -6,12 +6,14 @@ const SERVER_URL = import.meta.env.VITE_CORPSE_SERVER_BASE_URL;
 const userRegister = async (payload) => {
     try {
         const response = await axios.post(SERVER_URL + '/api/auth/register', payload);
-        const {token, userId} = response.data;
+        const { token } = response.data;
         localStorage.setItem('authToken', token);
+
+        const { user } = authStatusFromLocalStorage();
 
         return {
             data: {
-                id: userId,
+                ...user,
                 token
             },
             error: null
@@ -30,12 +32,14 @@ const userRegister = async (payload) => {
 const userLogin = async(payload) => {
     try {
         const response = await axios.post(SERVER_URL + '/api/auth/login', payload)
-        const {token, userId} = response.data;
+        const { token } = response.data;
         localStorage.setItem('authToken', token);
+
+        const { user } = authStatusFromLocalStorage();
 
         return {
             data: {
-                id: userId,
+                ...user,
                 token
             },
             error: null
@@ -64,10 +68,14 @@ const authStatusFromLocalStorage = () => {
         if (tokenDecode.exp * 1000 < Date.now()) {
             localStorage.removeItem('authToken');
         } else {
-            // axios.defaults.headers.common['Authorization'] = 'Bearer ' + getToken;
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + getToken;
             values.isAuthenticated = true;
             values.user = {
-                id: tokenDecode.userId
+                id: tokenDecode.userId,
+                email: tokenDecode.email,
+                username: tokenDecode.username,
+                profilePictureUrl: tokenDecode.profilePictureUrl,
+                status: tokenDecode.status
             }
         }
     }
