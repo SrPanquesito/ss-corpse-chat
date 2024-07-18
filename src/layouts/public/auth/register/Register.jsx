@@ -141,7 +141,7 @@ const Register = () => {
                             className="text-sm text-sky-800 dark:text-zinc-100 
                             hover:underline underline-offset-2 decoration-dotted
                             "
-                            to="/login"
+                            to="/auth/login"
                         >
                             Login to your account
                         </Link>

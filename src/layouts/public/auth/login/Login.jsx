@@ -8,7 +8,7 @@ import { useAlert } from 'react-alert'
 const Login = () => {
     const navigate = useNavigate();
     const [form, setForm] = useState({
-        username: '',
+        email: '',
         password: ''
     });
     const dispatchAuth = useDispatchAuth();
@@ -35,9 +35,9 @@ const Login = () => {
     const submitForm = (e) => {
         e.preventDefault();
 
-        const { username, password } = form;
+        const { email, password } = form;
         const formData = new FormData();
-        formData.append('username', username);
+        formData.append('email', email);
         formData.append('password', password);
 
         dispatchAuth({
@@ -62,11 +62,11 @@ const Login = () => {
                 <form className="w-full space-y-4 py-4">
                     <div className="space-y-2">
                         <FormInputField 
-                            id="username" 
-                            label="Username" 
-                            placeholder="Enter your username" 
+                            id="email" 
+                            label="Email" 
+                            placeholder="Enter your email" 
                             type="text"
-                            value={form.username}
+                            value={form.email}
                             onChangeHandler={inputHandler}
                         />
                     </div>
@@ -87,7 +87,7 @@ const Login = () => {
                             className="text-sm text-sky-800 dark:text-zinc-100 
                             hover:underline underline-offset-2 decoration-dotted
                             "
-                            to="/register"
+                            to="/auth/register"
                         >
                             Don't have any account? Sign up here
                         </Link>

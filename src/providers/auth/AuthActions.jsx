@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { jwtDecode } from "jwt-decode";
 
 const SERVER_URL = import.meta.env.VITE_CORPSE_SERVER_BASE_URL;
 
@@ -50,4 +51,27 @@ const userLogin = async(payload) => {
     }
 }
 
-export { userRegister, userLogin };
+const authStatusFromLocalStorage = () => {
+    const values = {
+        user: {},
+        isAuthenticated: false,
+        error: null
+    };
+    // Retrieve live session and setup token for axios requests
+    const getToken = localStorage.getItem('authToken');
+    if (getToken) {
+        const tokenDecode = jwtDecode(getToken);
+        if (tokenDecode.exp * 1000 < Date.now()) {
+            localStorage.removeItem('authToken');
+        } else {
+            // axios.defaults.headers.common['Authorization'] = 'Bearer ' + getToken;
+            values.isAuthenticated = true;
+            values.user = {
+                id: tokenDecode.userId
+            }
+        }
+    }
+    return values
+}
+
+export { userRegister, userLogin, authStatusFromLocalStorage };
