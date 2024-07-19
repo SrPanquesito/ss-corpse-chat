@@ -28,6 +28,13 @@ export const authReducer = async (authData, action) => {
                 error
             }
         }
+        case 'manual/setup': {
+            return {
+                ...authData,
+                user: action.user,
+                isAuthenticated: action.isAuthenticated
+            }
+        }
         default: {
             throw Error('Unknown action: ' + action.type);
         }
