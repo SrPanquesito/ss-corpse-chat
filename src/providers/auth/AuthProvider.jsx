@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext } from 'react';
+import useAsyncReducer from 'hooks/useAsyncReducer';
 import { authReducer, authDefaultValues } from './AuthReducer';
 
 const AuthContext = createContext(null);
 const AuthDispatchContext = createContext(null);
 
 export function AuthProvider({ children }) {
-    const [authData, dispatchAuth] = useReducer(authReducer, authDefaultValues);
+    const [authData, dispatchAuth] = useAsyncReducer(authReducer, authDefaultValues);
 
     return (
         <AuthContext.Provider value={authData}>

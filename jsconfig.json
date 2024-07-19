@@ -6,7 +6,9 @@
         "assets/*": ["./src/assets/*"],
         "components/*": ["./src/components/*"],
         "layouts/*": ["./src/layouts/*"],
-        "providers/*": ["./src/providers/*"]
+        "providers/*": ["./src/providers/*"],
+        "hooks/*": ["./src/hooks/*"],
+        "middlewares/*": ["./src/middlewares/*"]
       }
     }
 }

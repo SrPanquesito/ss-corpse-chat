@@ -1,8 +1,51 @@
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import FormInputField from 'components/form/FormInputField';
 import FormButton from 'components/form/FormButton';
+import { useDispatchAuth, useAuth } from 'providers/auth/AuthProvider';
+import { useAlert } from 'react-alert'
 
 const Login = () => {
+    const navigate = useNavigate();
+    const [form, setForm] = useState({
+        email: '',
+        password: ''
+    });
+    const dispatchAuth = useDispatchAuth();
+    const {user: authenticatedUser, error: authenticatedError, isAuthenticated} = useAuth();
+    const alert = useAlert();
+
+    useEffect(() => {
+        if (isAuthenticated && authenticatedUser?.id) {
+            alert.success('Login successful');
+            setTimeout(() => {
+                navigate('/home');
+            }, 2000);
+        }
+        if (authenticatedError?.message) {
+            alert.error(authenticatedError.message);
+        }
+    }, [authenticatedError, isAuthenticated]);
+
+    const inputHandler = (e) => {
+        const { id, value } = e.target;
+        setForm({ ...form, [id]: value });
+    };
+
+    const submitForm = (e) => {
+        e.preventDefault();
+
+        const { email, password } = form;
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('password', password);
+
+        dispatchAuth({
+            type: 'login',
+            data: formData
+        });
+    };
+
     return (
         <section className="flex justify-center items-center h-full">
             <div className="
@@ -19,10 +62,12 @@ const Login = () => {
                 <form className="w-full space-y-4 py-4">
                     <div className="space-y-2">
                         <FormInputField 
-                            id="username" 
-                            label="Username" 
-                            placeholder="Enter your username" 
+                            id="email" 
+                            label="Email" 
+                            placeholder="Enter your email" 
                             type="text"
+                            value={form.email}
+                            onChangeHandler={inputHandler}
                         />
                     </div>
 
@@ -32,6 +77,8 @@ const Login = () => {
                             label="Password" 
                             placeholder="Enter your password" 
                             type="password"
+                            value={form.password}
+                            onChangeHandler={inputHandler}
                         />
                     </div>
 
@@ -40,7 +87,7 @@ const Login = () => {
                             className="text-sm text-sky-800 dark:text-zinc-100 
                             hover:underline underline-offset-2 decoration-dotted
                             "
-                            to="/register"
+                            to="/auth/register"
                         >
                             Don't have any account? Sign up here
                         </Link>
@@ -49,6 +96,7 @@ const Login = () => {
                     <FormButton
                         text="Log in"
                         type="submit"
+                        onSubmit={submitForm}
                     />
                 </form>
             </div>

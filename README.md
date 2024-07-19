@@ -138,6 +138,7 @@ Or where did I last leave the project?
     - [ ] Form validation
     - [ ] Backend connection
     - [ ] Limit calls to BE
+- [ ] Configure material tailwind to use alert pop-up for errors (LAST WORKED)
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 

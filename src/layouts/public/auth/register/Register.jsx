@@ -1,11 +1,13 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 // import _ from 'lodash'; // (.isEqual) Use for password and confirmPassword match before attempting call to backend
 import FormInputField from 'components/form/FormInputField';
 import FormButton from 'components/form/FormButton';
-import { useDispatchAuth } from 'providers/auth/AuthProvider';
+import { useDispatchAuth, useAuth } from 'providers/auth/AuthProvider';
+import { useAlert } from 'react-alert'
 
 const Register = () => {
+    const navigate = useNavigate();
     const [form, setForm] = useState({
         username: '',
         email: '',
@@ -15,6 +17,20 @@ const Register = () => {
     });
     const [loadImage, setLoadImage] = useState('');
     const dispatchAuth = useDispatchAuth();
+    const {user: authenticatedUser, error: authenticatedError, isAuthenticated} = useAuth();
+    const alert = useAlert();
+
+    useEffect(() => {
+        if (isAuthenticated && authenticatedUser?.id) {
+            alert.success('Registration successful');
+            setTimeout(() => {
+                navigate('/home');
+            }, 2000);
+        }
+        if (authenticatedError?.message) {
+            alert.error(authenticatedError.message);
+        }
+    }, [authenticatedError, isAuthenticated]);
 
     const inputHandler = (e) => {
         const { id, value } = e.target;
@@ -48,7 +64,7 @@ const Register = () => {
         dispatchAuth({
             type: 'register',
             data: formData
-        })
+        });
     };
 
     return (
@@ -125,7 +141,7 @@ const Register = () => {
                             className="text-sm text-sky-800 dark:text-zinc-100 
                             hover:underline underline-offset-2 decoration-dotted
                             "
-                            to="/login"
+                            to="/auth/login"
                         >
                             Login to your account
                         </Link>
