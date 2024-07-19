@@ -1,21 +1,21 @@
 /* width */
-.light-scrollbar::-webkit-scrollbar {
-    width: 8px;
+::-webkit-scrollbar {
+    width: 6px;
 }
 
 /* Track */
-.light-scrollbar::-webkit-scrollbar-track {
-    background: #e5e7eb;
+::-webkit-scrollbar-track {
+    background: transparent;
     border-radius: 100px;
 }
 
 /* Handle */
-.light-scrollbar::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
     border-radius: 100px;
 }
 
 /* Handle on hover */
-.light-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #93a9c3;
+::-webkit-scrollbar-thumb:hover {
+    background: #969696;
 }

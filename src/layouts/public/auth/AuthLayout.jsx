@@ -1,8 +1,4 @@
-import {
-  Outlet
-} from 'react-router-dom';
-
-const AuthLayout = () => {
+const AuthLayout = ({ children }) => {
     return (
       <section className="flex justify-between items-center w-full h-full">
         <aside className="hidden md:flex flex-col justify-center items-center w-1/2 h-screen bg-gray-800">
@@ -13,7 +9,7 @@ const AuthLayout = () => {
             <span className="text-gray-400">Your edgy online space.</span>
         </aside>
         <aside className="w-full md:w-1/2">
-          <Outlet />
+           {children}
         </aside>
       </section>
     );

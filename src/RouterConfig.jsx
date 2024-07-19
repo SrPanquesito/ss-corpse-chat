@@ -26,15 +26,15 @@ const RouterConfig = createBrowserRouter([
           children: [
             {
               index: true,
-              element: <AuthLayout />
+              loader: () => redirect(ROUTES.LOGIN_ROUTE)
             },
             {
               path: 'register',
-              element: <Register />
+              element: <AuthLayout><Register /></AuthLayout>
             },
             {
               path: 'login',
-              element: <Login />
+              element: <AuthLayout><Login /></AuthLayout>
             }
           ]
         },
