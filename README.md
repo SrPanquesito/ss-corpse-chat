@@ -143,7 +143,8 @@ Or where did I last leave the project?
 - [x] Protect and redirect routes
 - [x] Retrieve user data from localStorage JWT
 - [ ] UI for ChatLayout and separate into components (LAST WORKED)
-- [ ] Move Darkmode button to Contact Details header, left side of information button
+- [x] Move Darkmode button to Contact Details header, left side of information button
+- [x] Added emoji picker
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
