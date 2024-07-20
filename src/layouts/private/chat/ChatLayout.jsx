@@ -4,6 +4,8 @@ import { useDispatchAuth } from 'providers/auth';
 import SearchInput from 'components/SearchInput';
 import ContactCard from 'components/ContactCard';
 import MessageInput from 'components/MessageInput';
+import UserMessage from 'components/conversation/UserMessage';
+import ContactMessage from 'components/conversation/ContactMessage';
 import './ChatLayout.css';
 
 const ChatLayout = () => {
@@ -11,6 +13,7 @@ const ChatLayout = () => {
     const dispatch = useDispatchAuth();
     const [searchText, setSearchText] = useState('');
     const [messageText, setMessageText] = useState('');
+    const currentDate = new Date().toLocaleString();
 
     const searchInputHandler = (e) => {
         const { value } = e.target;
@@ -46,7 +49,7 @@ const ChatLayout = () => {
                     <img src="src/assets/images/maximiliano.png"
                         className="object-cover rounded-[50%] w-14 shadow-button cursor-pointer"
                         alt="" />
-                    <h4 className="text-slate-800 dark:text-zinc-100 font-bold text-base lg:text-xl truncate max-w-[50%]">{welcomeMessage}</h4>
+                    <h4 className="text-slate-800 dark:text-zinc-200 font-bold text-base lg:text-xl truncate max-w-[50%]">{welcomeMessage}</h4>
                     <a className="flex items-center justify-center w-8 h-8 cursor-pointer rounded-[50%] shadow-tiny ml-auto transition-all 
                                     bg-slate-300
                                     dark:bg-zinc-900
@@ -187,7 +190,7 @@ const ChatLayout = () => {
                         <img src="src/assets/images/maximiliano.png"
                             className="object-cover rounded-[50%] w-14 shadow-button cursor-pointer"
                             alt="" />
-                        <h4 className="text-slate-800 dark:text-zinc-100 font-semibold text-base lg:text-lg truncate max-w-[75%] cursor-pointer">Maximiliano</h4>
+                        <h4 className="text-slate-800 dark:text-zinc-200 font-semibold text-base lg:text-lg truncate max-w-[75%] cursor-pointer">Maximiliano</h4>
                     </div>
                     <div>
                         <svg className="size-9 transition-all
@@ -202,8 +205,67 @@ const ChatLayout = () => {
                     </div>
                 </nav>
                 {/* Conversation */}
-                <div className="w-full h-full overflow-x-hidden overflow-y-auto">
-                    
+                <div className="flex flex-col-reverse justify-start w-full h-full overflow-x-hidden overflow-y-auto px-3 py-4 gap-2">
+                    <UserMessage
+                        content="Hello, how are you?"
+                        date={'Este va abajo'}
+                    />
+                    <UserMessage
+                        content="Hello, how are you?"
+                        date={currentDate}
+                    />
+                    <ContactMessage
+                        content="I'm fine, thank you."
+                        date={currentDate}
+                    />
+                    <ContactMessage
+                        content="I'm fine, thank you."
+                        date={currentDate}
+                    />
+                    <UserMessage
+                        content="Hello, how are you?"
+                        date={currentDate}
+                    />
+                    <ContactMessage
+                        content="I'm fine, thank you."
+                        date={currentDate}
+                    />
+                    <UserMessage
+                        content="Hello, how are you?"
+                        date={currentDate}
+                    />
+                    <UserMessage
+                        content="Hello, how are you?"
+                        date={currentDate}
+                    />
+                    <UserMessage
+                        content="Hello, how are you?"
+                        date={currentDate}
+                    />
+                    <ContactMessage
+                        content="I'm fine, thank you."
+                        date={currentDate}
+                    />
+                    <ContactMessage
+                        content="I'm fine, thank you."
+                        date={currentDate}
+                    />
+                    <ContactMessage
+                        content="I'm fine, thank you."
+                        date={currentDate}
+                    />
+                    <ContactMessage
+                        content="I'm fine, thank you."
+                        date={currentDate}
+                    />
+                    <ContactMessage
+                        content="I'm fine, thank you."
+                        date={currentDate}
+                    />
+                    <UserMessage
+                        content="Hello, how are you?"
+                        date={'Este va arriba'}
+                    />
                 </div>
                 {/* Send message section */}
                 <footer className="flex justify-between items-center w-full shadow py-2 md:p-3 bg-zinc-100 dark:bg-gray-800 dark:border-r dark:border-t dark:border-slate-700">
