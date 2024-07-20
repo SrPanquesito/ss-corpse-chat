@@ -130,15 +130,20 @@ Or where did I last leave the project?
     - [x] CSS
     - [x] Form handling
     - [ ] Form validation
-    - [ ] Backend connection
+    - [x] Backend connection
     - [ ] Limit calls to BE
 - [ ] Login page
     - [x] CSS
-    - [ ] Form handling
+    - [x] Form handling
     - [ ] Form validation
-    - [ ] Backend connection
+    - [x] Backend connection
     - [ ] Limit calls to BE
-- [ ] Configure material tailwind to use alert pop-up for errors (LAST WORKED)
+- [x] Configure material tailwind to use alert pop-up for errors
+- [ ] Reeplace alert pop-up for homemade alert
+- [x] Protect and redirect routes
+- [x] Retrieve user data from localStorage JWT
+- [ ] UI for ChatLayout and separate into components (LAST WORKED)
+- [ ] Move Darkmode button to Contact Details header, left side of information button
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
