@@ -1,8 +1,10 @@
+import './ComponentStyles.css';
 import { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import './ComponentStyles.css';
+import { useDispatchAbsolute } from 'providers/absolute';
 
-const MessageInput = ({id, placeholder, value, onChangeHandler, onEmojiButtonClick}) => {
+const MessageInput = ({id, placeholder, value, onChangeHandler}) => {
+    const dispatchAbsolute = useDispatchAbsolute();
     const textAreaRef = useRef(null);
 
     useEffect(() => {
@@ -20,6 +22,10 @@ const MessageInput = ({id, placeholder, value, onChangeHandler, onEmojiButtonCli
             }
         }
     }, [textAreaRef.current, value]);
+
+    const toggleEmojiPicker = () => {
+        dispatchAbsolute({ type: 'emojipicker/toggle' });
+    };
 
     return (
         <div className="flex items-center relative">
@@ -46,7 +52,7 @@ const MessageInput = ({id, placeholder, value, onChangeHandler, onEmojiButtonCli
                 onChange={onChangeHandler}
                 value={value}
             ></textarea>
-            <div className="absolute right-3 cursor-pointer hover:brightness-125" onClick={onEmojiButtonClick}>
+            <div className="absolute right-3 cursor-pointer hover:brightness-125" onClick={toggleEmojiPicker}>
                 <img src="src/assets/images/logo.png"
                     className="size-6"
                     alt="" />
@@ -59,8 +65,7 @@ MessageInput.propTypes = {
     id: PropTypes.string.isRequired,
     placeholder: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
-    onChangeHandler: PropTypes.func.isRequired,
-    onEmojiButtonClick: PropTypes.func.isRequired
+    onChangeHandler: PropTypes.func.isRequired
 }
 
 export default MessageInput
