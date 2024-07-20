@@ -12,7 +12,7 @@ const ContactCard = ({text, imageUrl, onClick}) => {
                     alt="" />
                 <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-[50%] border-2 border-white"></div>
             </div>
-            <h4 className="font-normal text-sm truncate dark:text-gray-400">{text}</h4>
+            <h4 className="text-slate-700 font-normal text-sm truncate dark:text-gray-400">{text}</h4>
         </div>
     )
 }

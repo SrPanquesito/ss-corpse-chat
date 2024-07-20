@@ -24,7 +24,7 @@ const MainLayout = () => {
   
     return (
         <main className={'h-screen ' + (settings.darkmode ? 'dark' : '')}>
-          <header className="fixed top-3 right-3 z-50">
+          <header className="fixed top-1 md:top-3 right-3 z-50">
             <ButtonDarkmode />
           </header>
           <AlertProvider template={AlertTemplate} {...options}>

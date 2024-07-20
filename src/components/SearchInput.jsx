@@ -12,11 +12,11 @@ const SearchInput = ({id, placeholder, value, onChangeHandler}) => {
                 border-none 
                 rounded-2xl 
                 dark:border-solid dark:border-slate-700
-                shadow-tiny shadow-zinc-300 
+                shadow shadow-zinc-300 
                 dark:shadow-slate-800
                 text-sm text-gray-600 placeholder:text-gray-400 
                 dark:text-gray-400 dark:placeholder:text-gray-700
-                bg-slate-300
+                bg-slate-200
                 dark:bg-zinc-900
                 caret-sky-600
                 dark:caret-sky-800
