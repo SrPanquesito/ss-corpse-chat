@@ -18,7 +18,7 @@ const ContactCard = ({text, imageUrl, onClick}) => {
 }
 
 ContactCard.propTypes = {
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired
