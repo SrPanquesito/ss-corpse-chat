@@ -24,11 +24,11 @@ const getAllContacts = async () => {
 
 const sendMessage = async (payload) => {
     try {
-        const response = await axios.get(SERVER_URL + '/api/chat/send-message', payload);
-        const { message } = response.data;
+        const response = await axios.post(SERVER_URL + '/api/chat/send-message', payload);
+        const { message: responseMessage, id } = response.data;
 
         return {
-            data: message,
+            data: responseMessage,
             error: null
         };
     } catch(error) {
