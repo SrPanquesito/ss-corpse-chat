@@ -1,6 +1,6 @@
 import './ChatLayout.css';
 import { useEffect } from 'react';
-import { authStatusFromLocalStorage } from 'providers/auth/AuthActions';
+import { authStatusFromCookies } from 'providers/auth/AuthActions';
 import { useDispatchAuth } from 'providers/auth';
 import { ChatProvider } from 'providers/chat';
 import LeftSidebarChatWrapper from 'components/private/chat/left-sidebar/LeftSidebarChatWrapper';
@@ -8,7 +8,7 @@ import MainChatWrapper from 'components/private/chat/main/MainChatWrapper';
 import EmojiPickerAbsolute from 'components/EmojiPickerAbsolute';
 
 const ChatLayout = () => {
-    const { user, isAuthenticated } = authStatusFromLocalStorage();
+    const { user, isAuthenticated } = authStatusFromCookies();
     const dispatch = useDispatchAuth();
 
     useEffect(() => {

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
+import { setCookie, getCookie, deleteCookie } from 'utils/cookies';
 
 const SERVER_URL = import.meta.env.VITE_CORPSE_SERVER_BASE_URL;
 
@@ -7,9 +8,9 @@ const userRegister = async (payload) => {
     try {
         const response = await axios.post(SERVER_URL + '/api/auth/register', payload);
         const { token } = response.data;
-        localStorage.setItem('authToken', token);
+        setCookie('authToken', token, 365);
 
-        const { user } = authStatusFromLocalStorage();
+        const { user } = authStatusFromCookies();
 
         return {
             data: {
@@ -33,9 +34,9 @@ const userLogin = async(payload) => {
     try {
         const response = await axios.post(SERVER_URL + '/api/auth/login', payload)
         const { token } = response.data;
-        localStorage.setItem('authToken', token);
+        setCookie('authToken', token, 365);
 
-        const { user } = authStatusFromLocalStorage();
+        const { user } = authStatusFromCookies();
 
         return {
             data: {
@@ -55,18 +56,18 @@ const userLogin = async(payload) => {
     }
 }
 
-const authStatusFromLocalStorage = () => {
+const authStatusFromCookies = () => {
     const values = {
         user: {},
         isAuthenticated: false,
         error: null
     };
     // Retrieve live session and setup token for axios requests
-    const getToken = localStorage.getItem('authToken');
+    const getToken = getCookie('authToken');
     if (getToken) {
         const tokenDecode = jwtDecode(getToken);
         if (tokenDecode.exp * 1000 < Date.now()) {
-            localStorage.removeItem('authToken');
+            deleteCookie('authToken');
         } else {
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + getToken;
             values.isAuthenticated = true;
@@ -82,4 +83,4 @@ const authStatusFromLocalStorage = () => {
     return values
 }
 
-export { userRegister, userLogin, authStatusFromLocalStorage };
+export { userRegister, userLogin, authStatusFromCookies };

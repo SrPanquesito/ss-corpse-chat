@@ -126,7 +126,7 @@ Or where did I last leave the project?
 - [x] Move Darkmode button to Contact Details header, left side of information button
 - [x] Added emoji picker
 - [ ] Display selected emoji in MessageInput
-- [ ] Change jwt from localStorage to cookies
+- [x] Change jwt from localStorage to cookies
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
