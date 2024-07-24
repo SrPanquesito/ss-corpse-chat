@@ -2,6 +2,7 @@ import { getAllContacts } from './ChatActions';
 
 export const chatDefaultValues = {
     contacts: [],
+    activeContact: null,
     error: null
 };
 
@@ -14,6 +15,12 @@ export async function chatReducer(prev, action) {
                 ...prev,
                 contacts: data,
                 error
+            };
+        }
+        case 'set/active/contact': {
+            return {
+                ...prev,
+                activeContact: action.activeContact
             };
         }
         default: {

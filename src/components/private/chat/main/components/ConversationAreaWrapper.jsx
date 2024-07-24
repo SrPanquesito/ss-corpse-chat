@@ -1,7 +1,9 @@
+import { useChat } from 'providers/chat';
 import UserMessage from './UserMessage';
 import ContactMessage from './ContactMessage';
 
 export default () => {
+    const chat = useChat();
     const currentDate = new Date().toLocaleString();
 
     return (

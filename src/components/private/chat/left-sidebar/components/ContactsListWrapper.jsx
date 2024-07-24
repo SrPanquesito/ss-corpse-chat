@@ -10,10 +10,13 @@ export default () => {
         if (chat.contacts?.length === 0 && !chat.error) {
             dispatchChat({ type: 'get/all/contacts' });
         }
+        if (chat.contacts?.length > 0) {
+            dispatchChat({ type: 'set/active/contact', activeContact: chat.contacts[0] });
+        }
     }, [chat.contacts, chat.error]);
 
     const onContactClick = (contact) => {
-        console.log(contact);
+        dispatchChat({ type: 'set/active/contact', activeContact: contact });
     };
 
     return (
