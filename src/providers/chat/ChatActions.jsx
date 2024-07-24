@@ -22,4 +22,24 @@ const getAllContacts = async () => {
     }
 }
 
-export { getAllContacts };
+const sendMessage = async (payload) => {
+    try {
+        const response = await axios.get(SERVER_URL + '/api/chat/send-message', payload);
+        const { message } = response.data;
+
+        return {
+            data: message,
+            error: null
+        };
+    } catch(error) {
+        if (error?.response?.data?.data?.length > 0) {
+            error.message = `${error.response.data.data[0].msg} for field: ${error.response.data.data[0].path}`;
+        }
+        return {
+            data: '',
+            error
+        };
+    }
+}
+
+export { getAllContacts, sendMessage };

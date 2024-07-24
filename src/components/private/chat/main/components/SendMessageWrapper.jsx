@@ -1,13 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MessageInput from 'components/MessageInput';
+import { useChat, useDispatchChat } from 'providers/chat';
+import { useAuth } from 'providers/auth';
 
 export default () => {
     const [messageText, setMessageText] = useState('');
+    const chat = useChat();
+    const auth = useAuth();
+    const dispatchChat = useDispatchChat();
+
+    useEffect(() => {
+        setMessageText((prev) => prev + chat.selectedEmoji);
+    }, [chat.selectedEmoji]);
 
     const messageInputHandler = (e) => {
         const { value } = e.target;
         setMessageText(value);
     };
+
+    const sendMessage = (e) => {
+        e.preventDefault();
+        dispatchChat({ type: 'http/sendMessage', payload: {
+            sender: auth.user,
+            receiver: chat.activeContact,
+            message: messageText
+        }});
+    }
 
     return (
         <footer className="flex justify-between items-center w-full shadow py-2 md:p-3 bg-zinc-100 dark:bg-gray-800 dark:border-r dark:border-t dark:border-slate-700">
@@ -42,7 +60,8 @@ export default () => {
                 />
             </div>
             <div>
-                <svg className="size-7 transition-all
+                <svg onClick={sendMessage}
+                    className="size-7 transition-all
                         text-sky-700
                         cursor-pointer
                         hover:text-sky-600

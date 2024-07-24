@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
 
-const ContactCard = ({text, imageUrl, onClick}) => {
+const ContactCard = ({id, text, imageUrl, onClick, activeContactId}) => {
     return (
-        <div className="flex items-center w-full p-3 gap-2 cursor-pointer transition-all
+        <div className={`flex items-center w-full p-3 gap-2 cursor-pointer transition-all
                         hover:bg-slate-200
                         dark:hover:bg-slate-700
-                        " onClick={onClick}>
+                        `
+                        + (id === activeContactId ? ' bg-slate-300 dark:bg-slate-700' : '')
+                    }
+                    onClick={onClick}>
             <div className="relative">
                 <img src={imageUrl}
                     className="object-cover rounded-[50%] w-12 shadow-button"

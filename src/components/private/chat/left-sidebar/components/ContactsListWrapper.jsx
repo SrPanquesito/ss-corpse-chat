@@ -8,7 +8,7 @@ export default () => {
 
     useEffect(() => {
         if (chat.contacts?.length === 0 && !chat.error) {
-            dispatchChat({ type: 'get/all/contacts' });
+            dispatchChat({ type: 'http/getAllContacts' });
         }
         if (chat.contacts?.length > 0) {
             dispatchChat({ type: 'set/active/contact', activeContact: chat.contacts[0] });
@@ -26,6 +26,7 @@ export default () => {
                     <ContactCard
                         key={contact.id}
                         id={contact.id}
+                        activeContactId={chat.activeContact?.id}
                         text={contact.username}
                         imageUrl={"src/assets/images/maximiliano.png"}
                         onClick={() => onContactClick(contact)}
