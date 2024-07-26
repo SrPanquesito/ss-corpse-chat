@@ -1,20 +1,29 @@
 import { useAuth } from 'providers/auth';
 
-export default ({imageUrl = 'https://es.web.img3.acsta.net/medias/nmedia/18/92/18/12/20185197.jpg'}) => {
+export default () => {
     const {user} = useAuth();
     const welcomeMessage = `Hi, ${user.username}`;
-    imageUrl = 'src/assets/images/car.png';
+    const profilePicture = user?.profilePictureUrl || 'src/assets/images/logo.png';
 
     return (
         <>
             <div className="flex md:hidden justify-center items-center w-full p-3 gap-2">
-                <img src="src/assets/images/maximiliano.png"
-                    className="object-cover rounded-[50%] w-14 shadow-button"
-                    alt="" />
+                <div className="flex items-center relative">
+                    <div style={{backgroundImage: 'url(' + profilePicture + ')'}}
+                        className={`
+                            bg-cover
+                            bg-center 
+                            bg-clip-padding
+                            float-left
+                            rounded-[50%] 
+                            w-16 h-16 cursor-pointer 
+                            shadow-button
+                        `}></div>
+                </div>
             </div>
             <div className="hidden md:flex items-center w-full p-3 gap-2">
                 <div className="flex items-center relative">
-                    <div style={{backgroundImage: 'url(' + imageUrl + ')'}}
+                    <div style={{backgroundImage: 'url(' + profilePicture + ')'}}
                         className={`
                             bg-cover
                             bg-center 

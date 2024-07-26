@@ -3,13 +3,21 @@ import ButtonDarkmode from 'components/ButtonDarkmode';
 
 export default () => {
     const chat = useChat();
+    const profilePicture = chat.activeContact?.profilePictureUrl || 'src/assets/images/logo.png';
 
     return (
         <nav className="flex justify-between items-center w-full shadow pt-7 pb-3 px-3 md:p-3 bg-zinc-100 dark:bg-gray-800 dark:border-r dark:border-b dark:border-slate-700">
             <div className="flex items-center w-full gap-2">
-                <img src="src/assets/images/maximiliano.png"
-                    className="object-cover rounded-[50%] w-14 shadow-button cursor-pointer"
-                    alt="" />
+                <div style={{backgroundImage: 'url(' + profilePicture + ')'}}
+                    className={`
+                        bg-cover
+                        bg-center 
+                        bg-clip-padding
+                        float-left
+                        rounded-[50%] 
+                        w-14 h-14 cursor-pointer 
+                        shadow-button
+                    `}></div>
                 <h4 className="text-slate-800 dark:text-zinc-200 font-semibold text-base lg:text-lg truncate max-w-[75%] cursor-pointer">
                     {chat.activeContact?.username || ''}
                 </h4>

@@ -28,7 +28,7 @@ export default () => {
                         id={contact.id}
                         activeContactId={chat.activeContact?.id}
                         text={contact.username}
-                        imageUrl={"src/assets/images/maximiliano.png"}
+                        imageUrl={contact.profilePictureUrl}
                         onClick={() => onContactClick(contact)}
                     />
                 ) :

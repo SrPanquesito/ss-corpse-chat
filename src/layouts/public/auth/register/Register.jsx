@@ -60,7 +60,7 @@ const Register = () => {
         formData.append('email', email);
         formData.append('password', password);
         formData.append('confirmPassword', confirmPassword);
-        formData.append('image', image);
+        formData.append('file', image);
 
         dispatchAuth({
             type: 'register',
