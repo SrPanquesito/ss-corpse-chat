@@ -30,9 +30,11 @@ export async function chatReducer(prev, action) {
         }
         case 'http/post/send-message': {
             const {data, error} = await sendMessage(action.payload);
+            prev.activeMessages.unshift(data);
 
             return {
                 ...prev,
+                activeMessages: [...prev.activeMessages],
                 error
             };
         }

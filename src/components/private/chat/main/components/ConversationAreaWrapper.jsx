@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useChat, useDispatchChat } from 'providers/chat';
+import { useAuth } from 'providers/auth';
 import UserMessage from './UserMessage';
 import ContactMessage from './ContactMessage';
 
 export default () => {
+    const auth = useAuth();
     const chat = useChat();
     const dispatchChat = useDispatchChat();
     const currentDate = new Date().toLocaleString();
@@ -21,66 +23,37 @@ export default () => {
 
     return (
         <div className="flex flex-col-reverse justify-start w-full h-full overflow-x-hidden overflow-y-auto px-3 py-4 gap-2">
-            <UserMessage
-                content="Hello, how are you?"
-                date={'Este va abajo'}
-            />
-            <UserMessage
-                content="Hello, how are you?"
-                date={currentDate}
-            />
-            <ContactMessage
-                content="I'm fine, thank you."
-                date={currentDate}
-            />
-            <ContactMessage
-                content="I'm fine, thank you."
-                date={currentDate}
-            />
-            <UserMessage
-                content="Hello, how are you?"
-                date={currentDate}
-            />
-            <ContactMessage
-                content="I'm fine, thank you."
-                date={currentDate}
-            />
-            <UserMessage
-                content="Hello, how are you?"
-                date={currentDate}
-            />
-            <UserMessage
-                content="Hello, how are you?"
-                date={currentDate}
-            />
-            <UserMessage
-                content="Hello, how are you?"
-                date={currentDate}
-            />
-            <ContactMessage
-                content="I'm fine, thank you."
-                date={currentDate}
-            />
-            <ContactMessage
-                content="I'm fine, thank you."
-                date={currentDate}
-            />
-            <ContactMessage
-                content="I'm fine, thank you."
-                date={currentDate}
-            />
-            <ContactMessage
-                content="I'm fine, thank you."
-                date={currentDate}
-            />
-            <ContactMessage
-                content="I'm fine, thank you."
-                date={currentDate}
-            />
-            <UserMessage
-                content="Hello, how are you?"
-                date={'Este va arriba'}
-            />
+            {
+                chat.activeMessages && chat.activeMessages.length > 0 ? chat.activeMessages.map((msg) => {
+                    if (msg.senderId === chat.activeContact.id) {
+                        return (
+                            <ContactMessage
+                                key={msg.id}
+                                content={msg.text}
+                                date={msg.createdAt}
+                                contactProfilePictureUrl={chat.activeContact.profilePictureUrl}
+                            />
+                        )
+                    }
+                    if (msg.senderId === auth.user.id) {
+                        return (
+                            <UserMessage
+                                key={msg.id}
+                                content={msg.text}
+                                date={msg.createdAt}
+                            />
+                        )
+                    }
+                    return <></>
+                }) :
+                    <span className="p-3
+                        font-normal 
+                        text-sm
+                        text-gray-500
+                    ">
+                        No messages found for this contact.
+                    </span>
+            }
         </div>
     )
 }

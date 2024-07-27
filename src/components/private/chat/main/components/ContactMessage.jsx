@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 
-const ContactMessage = ({content, date}) => {
+const ContactMessage = ({content, date, contactProfilePictureUrl}) => {
+    const profilePicture = contactProfilePictureUrl || 'src/assets/images/logo.png';
+
     return (
         <div className="flex flex-row gap-2">
-            <img src="src/assets/images/maximiliano.png"
+            <img src={profilePicture}
                 className="object-cover rounded-[50%] w-7 h-7 shadow-button cursor-pointer self-end mb-6"
                 alt="" />
             <div className="flex flex-col items-start max-w-[70%] md:max-w-[75%] self-start gap-1">

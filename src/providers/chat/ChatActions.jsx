@@ -24,8 +24,9 @@ const getAllContacts = async () => {
 
 const getAllMessagesByContactId = async ({ id }) => {
     try {
-        const response = await axios.get(SERVER_URL + `/api/contact/${id}/messages`);
-        const { success, errorMessage, data } = response.data;
+        const response = await axios.get(SERVER_URL + `/api/chat/contact/${id}/messages`);
+        let { success, errorMessage, data } = response.data;
+        data = Array.isArray(data) ? data : [];
 
         return {
             data,
@@ -45,10 +46,10 @@ const getAllMessagesByContactId = async ({ id }) => {
 const sendMessage = async (payload) => {
     try {
         const response = await axios.post(SERVER_URL + '/api/chat/send-message', payload);
-        const { success, errorMessage, data } = response.data;
+        const { success, errorMessage, data: {message} } = response.data;
 
         return {
-            data,
+            data: message,
             error: null
         };
     } catch(error) {
