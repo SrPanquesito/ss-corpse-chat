@@ -8,7 +8,7 @@ export const authDefaultValues = {
 
 export const authReducer = async (authData, action) => {
     switch (action.type) {
-        case 'register': {
+        case 'http/auth/register': {
             const {data, error} = await userRegister(action.data);
 
             return {
@@ -18,7 +18,7 @@ export const authReducer = async (authData, action) => {
                 error
             }
         }
-        case 'login': {
+        case 'http/auth/login': {
             const {data, error} = await userLogin(action.data);
 
             return {

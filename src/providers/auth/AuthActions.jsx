@@ -7,7 +7,7 @@ const SERVER_URL = import.meta.env.VITE_CORPSE_SERVER_BASE_URL;
 const userRegister = async (payload) => {
     try {
         const response = await axios.post(SERVER_URL + '/api/auth/register', payload);
-        const { token } = response.data;
+        const { success, errorMessage, data: {token} } = response.data;
         setCookie('authToken', token, 365);
 
         const { user } = authStatusFromCookies();
@@ -33,7 +33,7 @@ const userRegister = async (payload) => {
 const userLogin = async(payload) => {
     try {
         const response = await axios.post(SERVER_URL + '/api/auth/login', payload)
-        const { token } = response.data;
+        const { success, errorMessage, data: {token} } = response.data;
         setCookie('authToken', token, 365);
 
         const { user } = authStatusFromCookies();

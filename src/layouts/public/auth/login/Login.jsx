@@ -42,7 +42,7 @@ const Login = () => {
         formData.append('password', password);
 
         dispatchAuth({
-            type: 'login',
+            type: 'http/auth/login',
             data: formData
         });
     };

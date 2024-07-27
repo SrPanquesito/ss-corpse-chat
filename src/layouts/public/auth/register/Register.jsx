@@ -63,7 +63,7 @@ const Register = () => {
         formData.append('file', image);
 
         dispatchAuth({
-            type: 'register',
+            type: 'http/auth/register',
             data: formData
         });
     };
