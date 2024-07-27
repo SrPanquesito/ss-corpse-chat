@@ -32,7 +32,7 @@ export default () => {
         formData = objectToFormData('sender', auth.user, formData);
         formData = objectToFormData('receiver', chat.activeContact, formData);
 
-        dispatchChat({ type: 'http/sendMessage', payload: formData });
+        dispatchChat({ type: 'http/post/send-message', payload: formData });
     }
 
     // TO-DO: Restrict file upload and preview to be files only.

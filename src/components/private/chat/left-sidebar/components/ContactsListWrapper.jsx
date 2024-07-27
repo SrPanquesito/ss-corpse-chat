@@ -8,15 +8,15 @@ export default () => {
 
     useEffect(() => {
         if (chat.contacts?.length === 0 && !chat.error) {
-            dispatchChat({ type: 'http/getAllContacts' });
+            dispatchChat({ type: 'http/get/contacts' });
         }
         if (chat.contacts?.length > 0) {
-            dispatchChat({ type: 'set/active/contact', activeContact: chat.contacts[0] });
+            dispatchChat({ type: 'set/activeContact', activeContact: chat.contacts[0] });
         }
     }, [chat.contacts, chat.error]);
 
     const onContactClick = (contact) => {
-        dispatchChat({ type: 'set/active/contact', activeContact: contact });
+        dispatchChat({ type: 'set/activeContact', activeContact: contact });
     };
 
     return (

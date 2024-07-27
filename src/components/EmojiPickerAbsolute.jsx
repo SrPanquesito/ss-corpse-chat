@@ -9,7 +9,7 @@ export default () => {
     const dispatchChat = useDispatchChat();
 
     const onEmojiClick = (event) => {
-        dispatchChat({ type: 'set/selected/emoji', selectedEmoji: event.emoji });
+        dispatchChat({ type: 'set/selectedEmoji', selectedEmoji: event.emoji });
     };
 
     return (
