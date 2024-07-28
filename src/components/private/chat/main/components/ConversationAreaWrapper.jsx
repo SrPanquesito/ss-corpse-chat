@@ -8,7 +8,6 @@ export default () => {
     const auth = useAuth();
     const chat = useChat();
     const dispatchChat = useDispatchChat();
-    const currentDate = new Date().toLocaleString();
 
     useEffect(() => {
         if (chat.activeContact?.id) {
@@ -28,6 +27,7 @@ export default () => {
                     if (msg.senderId === chat.activeContact.id) {
                         return (
                             <ContactMessage
+                                id={msg.id}
                                 key={msg.id}
                                 content={msg.text}
                                 date={msg.createdAt}
@@ -38,13 +38,13 @@ export default () => {
                     if (msg.senderId === auth.user.id) {
                         return (
                             <UserMessage
+                                id={msg.id}
                                 key={msg.id}
                                 content={msg.text}
                                 date={msg.createdAt}
                             />
                         )
                     }
-                    return <></>
                 }) :
                     <span className="p-3
                         font-normal 

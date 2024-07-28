@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const ContactMessage = ({content, date, contactProfilePictureUrl}) => {
+const ContactMessage = ({id, content, date, contactProfilePictureUrl}) => {
     const profilePicture = contactProfilePictureUrl || 'src/assets/images/logo.png';
 
     return (

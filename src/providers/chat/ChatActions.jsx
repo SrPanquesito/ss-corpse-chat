@@ -49,8 +49,8 @@ const sendMessage = async (payload) => {
         const { success, errorMessage, data: {message} } = response.data;
 
         return {
-            data: message,
-            error: null
+            data: success ? message : null,
+            error: success ? null : errorMessage
         };
     } catch(error) {
         if (error?.response?.data?.data?.length > 0) {

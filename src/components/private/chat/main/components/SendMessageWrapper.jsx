@@ -17,6 +17,13 @@ export default () => {
         setMessageText((prev) => prev + chat.selectedEmoji);
     }, [chat.selectedEmoji]);
 
+    useEffect(() => {
+        if (chat.lastMessageSent?.id && !chat.error) {
+            setMessageText('');
+            setMessageFile('');
+        }
+    }, [chat.lastMessageSent, chat.error]);
+
     const messageInputHandler = (e) => {
         const { value } = e.target;
         setMessageText(value);

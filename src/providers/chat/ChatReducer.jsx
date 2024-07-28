@@ -4,6 +4,7 @@ export const chatDefaultValues = {
     contacts: [],
     activeContact: null,
     activeMessages: [],
+    lastMessageSent: null,
     selectedEmoji: '',
     error: null
 };
@@ -30,11 +31,13 @@ export async function chatReducer(prev, action) {
         }
         case 'http/post/send-message': {
             const {data, error} = await sendMessage(action.payload);
-            prev.activeMessages.unshift(data);
+            if (error) return { ...prev, error };
 
+            prev.activeMessages.unshift(data);
             return {
                 ...prev,
                 activeMessages: [...prev.activeMessages],
+                lastMessageSent: data,
                 error
             };
         }

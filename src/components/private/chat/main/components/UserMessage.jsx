@@ -1,8 +1,21 @@
 import PropTypes from 'prop-types';
+import { useEffect, useRef } from 'react';
+import { useChat } from 'providers/chat';
 
-const UserMessage = ({content, date}) => {
+const UserMessage = ({id, content, date}) => {
+    const refRender = useRef();
+    const chat = useChat();
+
+    useEffect(() => {
+        if (chat.lastMessageSent?.id === id) {
+            // Focus scroll view on last message sent
+            refRender?.current?.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [chat.lastMessageSent]);
+
     return (
-        <div className="flex flex-col items-end max-w-[70%] md:max-w-[75%] self-end gap-1">
+        <div ref={refRender}
+            className="flex flex-col items-end max-w-[70%] md:max-w-[75%] self-end gap-1">
             <div className="
                 relative
                 p-2
