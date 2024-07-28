@@ -30,8 +30,9 @@ export default () => {
                                 id={msg.id}
                                 key={msg.id}
                                 content={msg.text}
+                                imageUrl={msg.imageUrl}
                                 date={msg.createdAt}
-                                contactProfilePictureUrl={chat.activeContact.profilePictureUrl}
+                                profilePictureUrl={chat.activeContact.profilePictureUrl}
                             />
                         )
                     }
@@ -41,6 +42,7 @@ export default () => {
                                 id={msg.id}
                                 key={msg.id}
                                 content={msg.text}
+                                imageUrl={msg.imageUrl}
                                 date={msg.createdAt}
                             />
                         )

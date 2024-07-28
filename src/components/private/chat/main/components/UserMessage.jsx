@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useRef } from 'react';
 import { useChat } from 'providers/chat';
 
-const UserMessage = ({id, content, date}) => {
+const UserMessage = ({id, content, date, imageUrl}) => {
     const refRender = useRef();
     const chat = useChat();
 
@@ -28,11 +28,13 @@ const UserMessage = ({id, content, date}) => {
                 dark:text-slate-400
                 dark:shadow-gray-900 
                 ">
-                    <p className="
-                        text-sm
-                        ">
-                        {content}
-                    </p>
+                    { (imageUrl && content) && (<>
+                        <img src={imageUrl} className='md:max-w-md rounded-md'></img>
+                        <p className="text-sm pt-2">{content}</p>
+                    </>)
+                    }
+                    { (imageUrl && !content) && <img src={imageUrl} className='md:max-w-md rounded-md'></img> }
+                    { (!imageUrl && content) && <p className="text-sm">{content}</p> }
             </div>
             <span className="
                 pr-1

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-const ContactMessage = ({id, content, date, contactProfilePictureUrl}) => {
-    const profilePicture = contactProfilePictureUrl || 'src/assets/images/logo.png';
+const ContactMessage = ({id, content, date, profilePictureUrl, imageUrl}) => {
+    const profilePicture = profilePictureUrl || 'src/assets/images/logo.png';
 
     return (
         <div className="flex flex-row gap-2">
@@ -21,11 +21,13 @@ const ContactMessage = ({id, content, date, contactProfilePictureUrl}) => {
                     dark:text-slate-400
                     dark:shadow-gray-900 
                     ">
-                        <p className="
-                            text-sm
-                            ">
-                            {content}
-                        </p>
+                        { (imageUrl && content) && (<>
+                            <img src={imageUrl} className='md:max-w-md rounded-md'></img>
+                            <p className="text-sm pt-2">{content}</p>
+                        </>)
+                        }
+                        { (imageUrl && !content) && <img src={imageUrl} className='md:max-w-md rounded-md'></img> }
+                        { (!imageUrl && content) && <p className="text-sm">{content}</p> }
                 </div>
                 <span className="
                     pl-1
