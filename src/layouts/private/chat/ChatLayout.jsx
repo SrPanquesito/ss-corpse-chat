@@ -6,6 +6,7 @@ import { ChatProvider } from 'providers/chat';
 import LeftSidebarChatWrapper from 'components/private/chat/left-sidebar/LeftSidebarChatWrapper';
 import MainChatWrapper from 'components/private/chat/main/MainChatWrapper';
 import EmojiPickerAbsolute from 'components/EmojiPickerAbsolute';
+import ImagePreviewDisplayAbsolute from 'components/ImagePreviewDisplayAbsolute';
 
 const ChatLayout = () => {
     const { user, isAuthenticated } = authStatusFromCookies();
@@ -21,6 +22,7 @@ const ChatLayout = () => {
                 <LeftSidebarChatWrapper />
                 <MainChatWrapper />
                 <EmojiPickerAbsolute />
+                <ImagePreviewDisplayAbsolute />
                 {/* Right sidebar (More contact information). Will be implemented in the future. */}
             </main>
         </ChatProvider>

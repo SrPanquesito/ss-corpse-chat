@@ -125,8 +125,14 @@ Or where did I last leave the project?
 - [x] UI for ChatLayout and separate into components
 - [x] Move Darkmode button to Contact Details header, left side of information button
 - [x] Added emoji picker
-- [ ] Display selected emoji in MessageInput
+- [x] Display selected emoji in MessageInput
 - [x] Change jwt from localStorage to cookies
+- [x] Retrieve messages for each convo and display them
+- [x] Display images in messages
+- [x] Smooth scroll when sending message, clear input field, hide emoji picker when clicked outside component
+- [x] Show selected image before sending message (one image only for now)
+- [ ] Create css bubble dialog style for image previewer
+- [ ] Adjust image previewer to render absolute position according to the width of the screen
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 

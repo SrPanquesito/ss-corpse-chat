@@ -1,5 +1,7 @@
 export const absoluteDefaultValues = {
-    showEmojiPicker: false
+    showEmojiPicker: false,
+    showImagePreviewDisplay: false,
+    dataImagePreviewDisplay: [],
 };
 
 export function absoluteReducer(prev, action) {
@@ -14,6 +16,24 @@ export function absoluteReducer(prev, action) {
             return {
                 ...prev,
                 showEmojiPicker: false
+            };
+        }
+        case 'imagepreviewdisplay/set': {
+            return {
+                ...prev,
+                dataImagePreviewDisplay: action.images
+            };
+        }
+        case 'imagepreviewdisplay/show': {
+            return {
+                ...prev,
+                showImagePreviewDisplay: true
+            };
+        }
+        case 'imagepreviewdisplay/hide': {
+            return {
+                ...prev,
+                showImagePreviewDisplay: false
             };
         }
         default: {

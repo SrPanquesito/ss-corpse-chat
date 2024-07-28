@@ -1,4 +1,4 @@
-export default ({ onChangeHandler }) => {
+export default ({ onChangeHandler, onClickHandler }) => {
     return (
         <>
             <input 
@@ -7,6 +7,7 @@ export default ({ onChangeHandler }) => {
                 type="file"
                 className="hidden"
                 onChange={onChangeHandler}
+                onClick={onClickHandler}
             />
             <label htmlFor="file-upload-icon" className="group">
                 <svg

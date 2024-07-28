@@ -5,6 +5,7 @@ import ImageUploaderInput from 'components/ImageUploaderInput';
 import { useChat, useDispatchChat } from 'providers/chat';
 import { useAuth } from 'providers/auth';
 import { objectToFormData } from 'utils/serializer';
+import { useDispatchAbsolute } from 'providers/absolute';
 
 export default () => {
     const [messageText, setMessageText] = useState('');
@@ -12,6 +13,7 @@ export default () => {
     const chat = useChat();
     const auth = useAuth();
     const dispatchChat = useDispatchChat();
+    const dispatchAbsolute = useDispatchAbsolute();
 
     useEffect(() => {
         setMessageText((prev) => prev + chat.selectedEmoji);
@@ -21,6 +23,7 @@ export default () => {
         if (chat.lastMessageSent?.id && !chat.error) {
             setMessageText('');
             setMessageFile('');
+            dispatchAbsolute({ type: 'imagepreviewdisplay/hide' });
         }
     }, [chat.lastMessageSent, chat.error]);
 
@@ -48,22 +51,31 @@ export default () => {
         if (e.target.files.length !== 0) {
             const file = e.target.files[0];
             setMessageFile(file);
+            // Open image preview display without file
+            dispatchAbsolute({ type: 'imagepreviewdisplay/show' });
         }
 
-        // Display file in UI
-        // const reader = new FileReader();
-        // reader.onload = () => {
-        //     setLoadImage(reader.result);
-        // };
-        // reader.readAsDataURL(e.target.files[0]);
+        // Setup actual file to display in the image previewer
+        prepareImagePreview(e.target.files)
     };
+
+    const prepareImagePreview = (files) => {
+        if (files?.length > 0) {
+            const reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onload = () => {
+                dispatchAbsolute({ type: 'imagepreviewdisplay/set', images: [reader.result] });
+            };
+        }
+    }
 
     return (
         <footer className="flex justify-between items-center w-full shadow py-2 md:p-3 bg-zinc-100 dark:bg-gray-800 dark:border-r dark:border-t dark:border-slate-700">
             <div className="flex items-center gap-2">
-                <FileUploaderInput 
+                {/* <FileUploaderInput
+                    onClickHandler={onFileClick} 
                     onChangeHandler={onFileUpload}
-                />
+                /> */}
                 <ImageUploaderInput
                     onChangeHandler={onFileUpload}
                 />
