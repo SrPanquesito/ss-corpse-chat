@@ -10,6 +10,12 @@ export function absoluteReducer(prev, action) {
                 showEmojiPicker: !prev.showEmojiPicker
             };
         }
+        case 'emojipicker/hide': {
+            return {
+                ...prev,
+                showEmojiPicker: false
+            };
+        }
         default: {
             throw Error('Unknown action: ' + action.type);
         }
