@@ -2,6 +2,7 @@ export const absoluteDefaultValues = {
     showEmojiPicker: false,
     showImagePreviewDisplay: false,
     dataImagePreviewDisplay: [],
+    positionCoordsImagePreviewDisplay: [0, 0],
 };
 
 export function absoluteReducer(prev, action) {
@@ -27,7 +28,8 @@ export function absoluteReducer(prev, action) {
         case 'imagepreviewdisplay/show': {
             return {
                 ...prev,
-                showImagePreviewDisplay: true
+                showImagePreviewDisplay: true,
+                positionCoordsImagePreviewDisplay: action.positionCoords
             };
         }
         case 'imagepreviewdisplay/hide': {

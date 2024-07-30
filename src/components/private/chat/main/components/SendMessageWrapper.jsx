@@ -47,12 +47,15 @@ export default () => {
 
     // TO-DO: Restrict file upload and preview to be files only.
     // TO-DO: Image upload should only select image files from the file system and / or open the camera.
+    const onClickHandler = (e) => {
+        // Open image preview display without file
+        dispatchAbsolute({ type: 'imagepreviewdisplay/show', positionCoords: [e.pageX, e.pageY] });
+    };
+
     const onFileUpload = (e) => {
         if (e.target.files.length !== 0) {
             const file = e.target.files[0];
             setMessageFile(file);
-            // Open image preview display without file
-            dispatchAbsolute({ type: 'imagepreviewdisplay/show' });
         }
 
         // Setup actual file to display in the image previewer
@@ -78,6 +81,7 @@ export default () => {
                 /> */}
                 <ImageUploaderInput
                     onChangeHandler={onFileUpload}
+                    onClickHandler={onClickHandler}
                 />
             </div>
             <div className="grow px-2">
