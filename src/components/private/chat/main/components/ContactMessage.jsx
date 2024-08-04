@@ -1,10 +1,22 @@
 import PropTypes from 'prop-types';
+import { useEffect, useRef } from 'react';
+import { useSocketData } from 'providers/socket';
 
 const ContactMessage = ({id, content, date, profilePictureUrl, imageUrl}) => {
     const profilePicture = profilePictureUrl || 'src/assets/images/logo.png';
+    const refRender = useRef();
+    const socketData = useSocketData();
+
+    useEffect(() => {
+        if (socketData.newMessage?.id === id) {
+            // Focus scroll view on last message sent
+            refRender?.current?.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [socketData.newMessage]);
 
     return (
-        <div className="flex flex-row gap-2">
+        <div ref={refRender}
+            className="flex flex-row gap-2">
             <img src={profilePicture}
                 className="object-cover rounded-[50%] w-7 h-7 shadow-button cursor-pointer self-end mb-6"
                 alt="" />

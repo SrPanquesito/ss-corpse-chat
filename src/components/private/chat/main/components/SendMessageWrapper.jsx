@@ -6,6 +6,7 @@ import { useChat, useDispatchChat } from 'providers/chat';
 import { useAuth } from 'providers/auth';
 import { objectToFormData } from 'utils/serializer';
 import { useDispatchAbsolute } from 'providers/absolute';
+import { socket } from 'utils/socket';
 
 export default () => {
     const [messageText, setMessageText] = useState('');
@@ -41,6 +42,13 @@ export default () => {
         formData.append('file', file);
         formData = objectToFormData('sender', auth.user, formData);
         formData = objectToFormData('receiver', chat.activeContact, formData);
+
+        socket.timeout(5000).emit('add/newMessage', {
+            message: messageText,
+            file: file,
+            sender: auth.user,
+            receiver: chat.activeContact
+        });
 
         dispatchChat({ type: 'http/post/send-message', payload: formData });
     }

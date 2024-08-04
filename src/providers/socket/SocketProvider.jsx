@@ -7,6 +7,7 @@ const SocketContext = createContext(null);
 const socketValues = {
   isConnected: false,
   onlineUsers: [],
+  newMessage: null
 };
 
 function socketReducer(prev, action) {
@@ -29,6 +30,12 @@ function socketReducer(prev, action) {
             onlineUsers: action.onlineUsers
         };
       }
+      case 'set/newMessage': {
+        return {
+            ...prev,
+            newMessage: action.newMessage
+        };
+      }
       default: {
         throw Error('Unknown action: ' + action.type);
       }
@@ -38,27 +45,33 @@ function socketReducer(prev, action) {
 export function SocketProvider({ children }) {
     const [socketConfig, dispatch] = useReducer(socketReducer, socketValues);
 
+    function onConnect() {
+      dispatch({ type: 'connect' });
+    }
+
+    function onDisconnect() {
+      dispatch({ type: 'disconnect' });
+    }
+
+    function onReceivedOnlineUsers(onlineUsers) {
+      dispatch({ type: 'set/onlineUsers', onlineUsers });
+    }
+
+    function onReceivedNewMessage(newMessage) {
+      dispatch({ type: 'set/newMessage', newMessage });
+    }
+
     useEffect(() => {
-        function onConnect() {
-          dispatch({ type: 'connect' });
-        }
-    
-        function onDisconnect() {
-          dispatch({ type: 'disconnect' });
-        }
-    
-        function clientSetOnlineUsers(onlineUsers) {
-          dispatch({ type: 'set/onlineUsers', onlineUsers });
-        }
-    
         socket.on('connect', onConnect);
         socket.on('disconnect', onDisconnect);
-        socket.on('send/onlineUsers', clientSetOnlineUsers);
+        socket.on('send/onlineUsers', onReceivedOnlineUsers);
+        socket.on('send/newMessage', onReceivedNewMessage);
     
         return () => {
           socket.off('connect', onConnect);
           socket.off('disconnect', onDisconnect);
-          socket.off('send/onlineUsers', clientSetOnlineUsers);
+          socket.off('send/onlineUsers', onReceivedOnlineUsers);
+          socket.off('send/newMessage', onReceivedNewMessage);
         };
       }, []);
 

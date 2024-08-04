@@ -1,26 +1,47 @@
+import { useState, useEffect } from 'react';
 import { useChat } from 'providers/chat';
 import ButtonDarkmode from 'components/ButtonDarkmode';
+import { useSocketData } from 'providers/socket';
 
 export default () => {
     const chat = useChat();
+    const socketData = useSocketData();
     const profilePicture = chat.activeContact?.profilePictureUrl || 'src/assets/images/logo.png';
+    const [isOnline, setIsOnline] = useState(false);
+
+    useEffect(() => {
+        if (chat.activeContact && socketData.onlineUsers) {
+            const online = socketData.onlineUsers.some((user) => user.id === chat.activeContact?.id);
+            setIsOnline(online);
+        }
+    }, [chat.activeContact, socketData.onlineUsers]);
 
     return (
         <nav className="flex justify-between items-center w-full shadow pt-7 pb-3 px-3 md:p-3 bg-zinc-100 dark:bg-gray-800 dark:border-r dark:border-b dark:border-slate-700">
-            <div className="flex items-center w-full gap-2">
-                <div style={{backgroundImage: 'url(' + profilePicture + ')'}}
-                    className={`
-                        bg-cover
-                        bg-center 
-                        bg-clip-padding
-                        float-left
-                        rounded-[50%] 
-                        w-14 h-14 cursor-pointer 
-                        shadow-button
-                    `}></div>
-                <h4 className="text-slate-800 dark:text-zinc-200 font-semibold text-base lg:text-lg truncate max-w-[75%] cursor-pointer">
-                    {chat.activeContact?.username || ''}
-                </h4>
+            <div className="flex items-center w-full h-full gap-2">
+                <div className="relative">
+                    <div style={{backgroundImage: 'url(' + profilePicture + ')'}}
+                        className={`
+                            bg-cover
+                            bg-center 
+                            bg-clip-padding
+                            float-left
+                            rounded-[50%] 
+                            w-14 h-14 cursor-pointer 
+                            shadow-button
+                        `}></div>
+                    { isOnline && 
+                        <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-[50%] border-2 border-white"></div>
+                    }
+                </div>
+                <div className="flex items-center relative h-full">
+                    <h4 className="text-slate-800 dark:text-zinc-200 font-semibold text-base lg:text-lg truncate max-w-[75%] cursor-pointer">
+                        {chat.activeContact?.username || ''}
+                    </h4>
+                    <span className={(isOnline ? "text-green-500 dark:text-green-700" : "text-gray-400 dark:text-gray-500") + " absolute bottom-0 text-xs font-normal truncate"}>
+                        {isOnline ? 'Online' : 'Offline'}
+                    </span>
+                </div>
             </div>
             <div className="flex items-center gap-2">
                 <ButtonDarkmode />

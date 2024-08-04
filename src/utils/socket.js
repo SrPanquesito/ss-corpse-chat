@@ -1,3 +1,4 @@
+// More information: https://socket.io/how-to/use-with-react
 import { io } from 'socket.io-client';
 
 const SOCKET_URL = import.meta.env.VITE_CORPSE_SOCKET_BASE_URL;

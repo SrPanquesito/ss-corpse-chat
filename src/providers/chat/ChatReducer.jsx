@@ -41,6 +41,13 @@ export async function chatReducer(prev, action) {
                 error
             };
         }
+        case 'add/received/new-message': {
+            prev.activeMessages.unshift(action.newMessage);
+            return {
+                ...prev,
+                activeMessages: [...prev.activeMessages]
+            };
+        }
         case 'set/activeContact': {
             return {
                 ...prev,

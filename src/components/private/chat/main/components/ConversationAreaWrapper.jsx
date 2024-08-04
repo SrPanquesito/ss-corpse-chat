@@ -3,11 +3,13 @@ import { useChat, useDispatchChat } from 'providers/chat';
 import { useAuth } from 'providers/auth';
 import UserMessage from './UserMessage';
 import ContactMessage from './ContactMessage';
+import { useSocketData } from 'providers/socket';
 
 export default () => {
     const auth = useAuth();
     const chat = useChat();
     const dispatchChat = useDispatchChat();
+    const socketData = useSocketData();
 
     useEffect(() => {
         if (chat.activeContact?.id) {
@@ -19,6 +21,18 @@ export default () => {
             });
         }
     }, [chat.activeContact?.id]);
+
+    useEffect(() => {
+        if (socketData.newMessage) {
+            if (chat.activeContact?.id === socketData.newMessage.senderId
+                && auth.user?.id === socketData.newMessage.receiverId) {
+                dispatchChat({
+                    type: 'add/received/new-message',
+                    newMessage: socketData.newMessage
+                });
+            }
+        }
+    }, [socketData.newMessage]);
 
     return (
         <div className="flex flex-col-reverse justify-start w-full h-full overflow-x-hidden overflow-y-auto px-3 py-4 gap-2">
