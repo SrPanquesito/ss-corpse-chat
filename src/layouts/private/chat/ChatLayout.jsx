@@ -7,6 +7,8 @@ import LeftSidebarChatWrapper from 'components/private/chat/left-sidebar/LeftSid
 import MainChatWrapper from 'components/private/chat/main/MainChatWrapper';
 import EmojiPickerAbsolute from 'components/EmojiPickerAbsolute';
 import ImagePreviewDisplayAbsolute from 'components/ImagePreviewDisplayAbsolute';
+import { SocketProvider } from 'providers/socket';
+import { socket } from 'utils/socket';
 
 const ChatLayout = () => {
     const { user, isAuthenticated } = authStatusFromCookies();
@@ -14,17 +16,29 @@ const ChatLayout = () => {
 
     useEffect(() => {
         dispatch({ type: 'manual/setup', user, isAuthenticated });
+        socket.timeout(5000).emit('add/onlineUser', user);
     }, [isAuthenticated]);
+
+    // Connect socket only when ChatLayout is active
+    useEffect(() => {
+        socket.connect();
+
+        return () => {
+          socket.disconnect();
+        };
+    }, []);
 
     return (
         <ChatProvider>
-            <main className="flex justify-between items-center w-full h-full">
-                <LeftSidebarChatWrapper />
-                <MainChatWrapper />
-                <EmojiPickerAbsolute />
-                <ImagePreviewDisplayAbsolute />
-                {/* Right sidebar (More contact information). Will be implemented in the future. */}
-            </main>
+            <SocketProvider>
+                <main className="flex justify-between items-center w-full h-full">
+                    <LeftSidebarChatWrapper />
+                    <MainChatWrapper />
+                    <EmojiPickerAbsolute />
+                    <ImagePreviewDisplayAbsolute />
+                    {/* Right sidebar (More contact information). Will be implemented in the future. */}
+                </main>
+            </SocketProvider>
         </ChatProvider>
     );
 }

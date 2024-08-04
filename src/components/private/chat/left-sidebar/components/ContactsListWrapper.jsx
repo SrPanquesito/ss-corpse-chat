@@ -10,7 +10,7 @@ export default () => {
         if (chat.contacts?.length === 0 && !chat.error) {
             dispatchChat({ type: 'http/get/contacts' });
         }
-        if (chat.contacts?.length > 0) {
+        if (chat.contacts?.length > 0 && !chat.activeContact) {
             dispatchChat({ type: 'set/activeContact', activeContact: chat.contacts[0] });
         }
     }, [chat.contacts, chat.error]);
