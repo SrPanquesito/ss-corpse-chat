@@ -25,6 +25,12 @@ export function absoluteReducer(prev, action) {
                 dataImagePreviewDisplay: action.images
             };
         }
+        case 'imagepreviewdisplay/clear': {
+            return {
+                ...prev,
+                dataImagePreviewDisplay: []
+            };
+        }
         case 'imagepreviewdisplay/show': {
             return {
                 ...prev,

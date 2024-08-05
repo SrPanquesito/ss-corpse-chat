@@ -63,8 +63,29 @@ const sendMessage = async (payload) => {
     }
 }
 
+const uploadSingleImageToS3 = async (payload) => {
+    try {
+        const response = await axios.post(SERVER_URL + '/api/chat/upload-single-image', payload);
+        const { success, errorMessage, data: {imageUrl} } = response.data;
+
+        return {
+            data: success ? imageUrl : null,
+            error: success ? null : errorMessage
+        };
+    } catch(error) {
+        if (error?.response?.data?.data?.length > 0) {
+            error.message = `${error.response.data.data[0].msg} for field: ${error.response.data.data[0].path}`;
+        }
+        return {
+            data: '',
+            error
+        };
+    }
+}
+
 export { 
     getAllContacts,
     getAllMessagesByContactId,
-    sendMessage
+    sendMessage,
+    uploadSingleImageToS3
 };

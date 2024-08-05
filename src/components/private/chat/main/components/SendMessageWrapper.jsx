@@ -7,6 +7,7 @@ import { useAuth } from 'providers/auth';
 import { objectToFormData } from 'utils/serializer';
 import { useDispatchAbsolute } from 'providers/absolute';
 import { socket } from 'utils/socket';
+import { uploadSingleImageToS3 } from 'providers/chat/ChatActions';
 
 export default () => {
     const [messageText, setMessageText] = useState('');
@@ -25,6 +26,7 @@ export default () => {
             setMessageText('');
             setMessageFile('');
             dispatchAbsolute({ type: 'imagepreviewdisplay/hide' });
+            dispatchAbsolute({ type: 'imagepreviewdisplay/clear', images: [] });
         }
     }, [chat.lastMessageSent, chat.error]);
 
@@ -33,19 +35,29 @@ export default () => {
         setMessageText(value);
     };
 
-    const sendMessage = (e) => {
+    const sendMessage = async (e) => {
         e.preventDefault();
 
-        const file = messageFile || '';
         let formData = new FormData();
-        formData.append('message', messageText);
+        let imageUrl = '';
+        const file = messageFile || '';
         formData.append('file', file);
+
+        // Upload image to S3 and send image Url to socket and message creation in DB
+        if (file) {
+            const {data, error} = await uploadSingleImageToS3(formData);
+            imageUrl = data;
+            formData.append('imageUrl', imageUrl);
+        }
+
+        formData.append('message', messageText);
         formData = objectToFormData('sender', auth.user, formData);
         formData = objectToFormData('receiver', chat.activeContact, formData);
 
         socket.timeout(5000).emit('add/newMessage', {
             message: messageText,
             file: file,
+            imageUrl,
             sender: auth.user,
             receiver: chat.activeContact
         });
