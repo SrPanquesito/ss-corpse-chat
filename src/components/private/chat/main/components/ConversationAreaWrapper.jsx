@@ -4,12 +4,14 @@ import { useAuth } from 'providers/auth';
 import UserMessage from './UserMessage';
 import ContactMessage from './ContactMessage';
 import { useSocketData } from 'providers/socket';
+import { useDispatchAbsolute } from 'providers/absolute';
 
 export default () => {
     const auth = useAuth();
     const chat = useChat();
     const dispatchChat = useDispatchChat();
     const socketData = useSocketData();
+    const dispatchAbsolute = useDispatchAbsolute();
 
     useEffect(() => {
         if (chat.activeContact?.id) {
@@ -24,12 +26,21 @@ export default () => {
 
     useEffect(() => {
         if (socketData.newMessage) {
+            // Show new message in current conversation
             if (chat.activeContact?.id === socketData.newMessage.senderId
                 && auth.user?.id === socketData.newMessage.receiverId) {
                 dispatchChat({
                     type: 'add/received/new-message',
                     newMessage: socketData.newMessage
                 });
+            }
+            // Show new message notification from another conversation
+            if (auth.user?.id === socketData.newMessage.receiverId
+                && chat.activeContact?.id !== socketData.newMessage.senderId) {
+                dispatchAbsolute({ type: 'notificationalert/show', notificationAlertOptions: {
+                    type: 'info',
+                    message: 'New message from ' + socketData.newMessage.sender.username
+                }});
             }
         }
     }, [socketData.newMessage]);

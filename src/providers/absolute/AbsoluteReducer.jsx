@@ -3,6 +3,12 @@ export const absoluteDefaultValues = {
     showImagePreviewDisplay: false,
     dataImagePreviewDisplay: [],
     positionCoordsImagePreviewDisplay: [0, 0],
+    showNotificationAlert: false,
+    notificationAlertOptions: {
+        type: 'info', // success, error, warning, info
+        message: 'Holi',
+        timeout: 3000,
+    }
 };
 
 export function absoluteReducer(prev, action) {
@@ -42,6 +48,21 @@ export function absoluteReducer(prev, action) {
             return {
                 ...prev,
                 showImagePreviewDisplay: false
+            };
+        }
+        case 'notificationalert/show': {
+            const timeout = action.notificationAlertOptions?.timeout ? action.notificationAlertOptions.timeout : 3000;
+            return {
+                ...prev,
+                showNotificationAlert: true,
+                notificationAlertOptions: {...action.notificationAlertOptions, timeout}
+            };
+        }
+        case 'notificationalert/hide': {
+            return {
+                ...prev,
+                showNotificationAlert: false,
+                notificationAlertOptions: {}
             };
         }
         default: {
