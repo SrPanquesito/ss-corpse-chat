@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { useEffect, useRef } from 'react';
 import { useSocketData } from 'providers/socket';
+import moment from 'moment';
+moment().format();
 
 const ContactMessage = ({id, content, date, profilePictureUrl, imageUrl}) => {
     const profilePicture = profilePictureUrl || 'src/assets/images/logo.png';
@@ -48,7 +50,7 @@ const ContactMessage = ({id, content, date, profilePictureUrl, imageUrl}) => {
                     text-gray-500
                     dark:text-gray-600
                     ">
-                    {date}
+                    {moment(date).calendar()}
                 </span>
             </div>
         </div>

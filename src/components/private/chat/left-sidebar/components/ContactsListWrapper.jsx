@@ -27,8 +27,9 @@ export default () => {
                         key={contact.id}
                         id={contact.id}
                         activeContactId={chat.activeContact?.id}
-                        text={contact.username}
-                        imageUrl={contact.profilePictureUrl}
+                        username={contact.username}
+                        profilePictureUrl={contact.profilePictureUrl}
+                        lastMessage={contact.lastMessage}
                         onClick={() => onContactClick(contact)}
                     />
                 ) :

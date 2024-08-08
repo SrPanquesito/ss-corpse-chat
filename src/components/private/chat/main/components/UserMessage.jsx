@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { useEffect, useRef } from 'react';
 import { useChat } from 'providers/chat';
+import moment from 'moment';
+moment().format();
 
 const UserMessage = ({id, content, date, imageUrl}) => {
     const refRender = useRef();
@@ -43,7 +45,7 @@ const UserMessage = ({id, content, date, imageUrl}) => {
                 text-gray-500
                 dark:text-gray-600
                 ">
-                {date}
+                {moment(date).calendar()}
             </span>
         </div>
     )

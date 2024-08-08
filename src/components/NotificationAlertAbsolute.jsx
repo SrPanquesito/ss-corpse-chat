@@ -41,7 +41,10 @@ export default () => {
 
     return (
         <div 
-            className="absolute z-50 right-2 top-2"
+            className={`
+                ${showNotificationAlert ? `z-50 ` : `-z-10 `}
+                absolute right-2 top-2
+            `}
         >
             <div className={`
                     ${notificationAlertOptions.type === "success" && success}
