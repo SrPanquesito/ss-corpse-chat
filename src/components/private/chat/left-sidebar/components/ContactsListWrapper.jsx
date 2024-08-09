@@ -7,7 +7,7 @@ export default () => {
     const dispatchChat = useDispatchChat();
 
     useEffect(() => {
-        if (chat.contacts?.length === 0 && !chat.error) {
+        if (chat.contacts?.length === 0 && !chat.error && !chat.retrievedInitialContacts) {
             dispatchChat({ type: 'http/get/contacts' });
         }
         if (chat.contacts?.length > 0 && !chat.activeContact) {

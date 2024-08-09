@@ -2,13 +2,27 @@ import { useState } from 'react';
 import SearchInput from 'components/SearchInput';
 import ContactsListWrapper from './components/ContactsListWrapper';
 import LoggedUserHeaderWrapper from './components/LoggedUserHeaderWrapper';
+import { useChat, useDispatchChat } from 'providers/chat';
 
 const LeftSidebarChatWrapper = () => {
     const [searchText, setSearchText] = useState('');
+    const chat = useChat();
+    const dispatchChat = useDispatchChat();
 
     const searchInputHandler = (e) => {
         const { value } = e.target;
         setSearchText(value);
+
+        if (chat.allContacts?.length > 0) {
+            const filteredItems = chat.allContacts.filter((contact) =>
+                contact.username.toLowerCase().includes(value.toLowerCase())
+            );
+            if (filteredItems.length > 0) {
+                dispatchChat({ type: 'update/contacts', contacts: filteredItems });
+            } else {
+                dispatchChat({ type: 'update/contacts', contacts: [] });
+            }
+        }
     };
 
     return (
