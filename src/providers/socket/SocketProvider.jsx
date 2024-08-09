@@ -7,6 +7,7 @@ const SocketContext = createContext(null);
 const socketValues = {
   isConnected: false,
   onlineUsers: [],
+  newOnlineUser: null,
   newMessage: null
 };
 
@@ -28,6 +29,12 @@ function socketReducer(prev, action) {
         return {
             ...prev,
             onlineUsers: action.onlineUsers
+        };
+      }
+      case 'set/newOnlineUser': {
+        return {
+            ...prev,
+            newOnlineUser: action.newOnlineUser
         };
       }
       case 'set/newMessage': {
@@ -57,6 +64,10 @@ export function SocketProvider({ children }) {
       dispatch({ type: 'set/onlineUsers', onlineUsers });
     }
 
+    function onReceivedNewOnlineUser(newOnlineUser) {
+      dispatch({ type: 'set/newOnlineUser', newOnlineUser });
+    }
+
     function onReceivedNewMessage(newMessage) {
       dispatch({ type: 'set/newMessage', newMessage });
     }
@@ -65,12 +76,14 @@ export function SocketProvider({ children }) {
         socket.on('connect', onConnect);
         socket.on('disconnect', onDisconnect);
         socket.on('send/onlineUsers', onReceivedOnlineUsers);
+        socket.on('send/newOnlineUser', onReceivedNewOnlineUser);
         socket.on('send/newMessage', onReceivedNewMessage);
     
         return () => {
           socket.off('connect', onConnect);
           socket.off('disconnect', onDisconnect);
           socket.off('send/onlineUsers', onReceivedOnlineUsers);
+          socket.off('send/newOnlineUser', onReceivedNewOnlineUser);
           socket.off('send/newMessage', onReceivedNewMessage);
         };
       }, []);

@@ -1,4 +1,4 @@
-export const absoluteDefaultValues = {
+const initialDefaultValues = {
     showEmojiPicker: false,
     showImagePreviewDisplay: false,
     dataImagePreviewDisplay: [],
@@ -10,6 +10,8 @@ export const absoluteDefaultValues = {
         timeout: 3000,
     }
 };
+
+export const absoluteDefaultValues = initialDefaultValues;
 
 export function absoluteReducer(prev, action) {
     switch (action.type) {
@@ -63,6 +65,13 @@ export function absoluteReducer(prev, action) {
                 ...prev,
                 showNotificationAlert: false,
                 notificationAlertOptions: {}
+            };
+        }
+        case 'cleanup': {
+            return {
+                ...initialDefaultValues,
+                showNotificationAlert: prev.showNotificationAlert,
+                notificationAlertOptions: prev.notificationAlertOptions
             };
         }
         default: {

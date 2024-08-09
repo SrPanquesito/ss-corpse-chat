@@ -32,6 +32,7 @@ export default () => {
             type: 'warning',
             message: 'Logged out successfully'
         }});
+        dispatchAbsolute({ type: 'cleanup' });
         navigate(ROUTES.LOGIN_ROUTE, { replace: true });
     };
 
