@@ -49,28 +49,11 @@ const ContactCard = ({id, username, profilePictureUrl, onClick, activeContactId,
         }
     }
 
-    function RenderMessageStatusIcon() {
-        if (isLoggedUserTheSender() && msg.status === 'seen') {
-            return (
-                <div style={{backgroundImage: 'url(' + profilePicture + ')'}}
-                    className={`
-                        bg-cover
-                        bg-center 
-                        bg-clip-padding
-                        float-left
-                        rounded-[50%] 
-                        w-4 h-4 
-                        shadow-button
-                    `}></div>
-            )
-        }
-    }
-
     return (
         <div onClick={onClick}
             className={`
                 ${id === activeContactId ? 'border-l-4 border-sky-500 bg-slate-200 dark:bg-slate-700 ' : ' '}
-                ${(!isLoggedUserTheSender() && msg.status === 'unseen') ? 'bg-blue-200 dark:bg-slate-900 ' : ' '}
+                ${(msg.status === 'unseen') ? 'bg-blue-200 dark:bg-slate-900 ' : ' '}
                 flex items-center w-full relative
                 p-3 gap-2 
                 cursor-pointer
@@ -102,9 +85,6 @@ const ContactCard = ({id, username, profilePictureUrl, onClick, activeContactId,
                         {msg.createdAt ? moment(msg.createdAt).fromNow() : ''}
                     </span>
                 </div>
-            </div>
-            <div className="hidden md:block absolute top-4 right-4">
-                <RenderMessageStatusIcon />
             </div>
         </div>
     )

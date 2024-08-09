@@ -33,14 +33,20 @@ export default () => {
                     type: 'add/received/new-message',
                     newMessage: socketData.newMessage
                 });
+                dispatchChat({ type: 'update/contacts/last-message', newMessage: {
+                    ...socketData.newMessage,
+                    status: 'seen'
+                }})
             }
             // Show new message notification from another conversation
             if (auth.user?.id === socketData.newMessage.receiverId
                 && chat.activeContact?.id !== socketData.newMessage.senderId) {
                 dispatchAbsolute({ type: 'notificationalert/show', notificationAlertOptions: {
                     type: 'info',
-                    message: 'New message from ' + socketData.newMessage.sender.username
+                    message: 'New message received'
                 }});
+                // Update contact list with new message
+                dispatchChat({ type: 'update/contacts/last-message', newMessage: socketData.newMessage });
             }
         }
     }, [socketData.newMessage]);

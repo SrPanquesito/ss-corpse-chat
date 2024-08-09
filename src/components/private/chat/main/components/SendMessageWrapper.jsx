@@ -22,13 +22,24 @@ export default () => {
     }, [chat.selectedEmoji]);
 
     useEffect(() => {
-        if (chat.lastMessageSent?.id && !chat.error) {
-            setMessageText('');
-            setMessageFile('');
-            dispatchAbsolute({ type: 'imagepreviewdisplay/hide' });
-            dispatchAbsolute({ type: 'imagepreviewdisplay/clear', images: [] });
+        if (chat.sendMessageSuccess) {
+            clearMessageInput();
+            socket.timeout(5000).emit('add/newMessage', chat.lastMessageSent);
+            dispatchChat({ type: 'update/contacts/last-message', newMessage: {...chat.lastMessageSent, status: 'seen'} })
+            dispatchChat({ type: 'clear/sendMessageSuccess' });
+            dispatchAbsolute({ type: 'notificationalert/show', notificationAlertOptions: {
+                type: 'success',
+                message: 'Sent message successfully'
+            }});
         }
-    }, [chat.lastMessageSent, chat.error]);
+    }, [chat.sendMessageSuccess]);
+
+    const clearMessageInput = () => {
+        setMessageText('');
+        setMessageFile('');
+        dispatchAbsolute({ type: 'imagepreviewdisplay/hide' });
+        dispatchAbsolute({ type: 'imagepreviewdisplay/clear', images: [] });
+    };
 
     const messageInputHandler = (e) => {
         const { value } = e.target;
@@ -53,14 +64,6 @@ export default () => {
         formData.append('message', messageText);
         formData = objectToFormData('sender', auth.user, formData);
         formData = objectToFormData('receiver', chat.activeContact, formData);
-
-        socket.timeout(5000).emit('add/newMessage', {
-            message: messageText,
-            file: file,
-            imageUrl,
-            sender: auth.user,
-            receiver: chat.activeContact
-        });
 
         dispatchChat({ type: 'http/post/send-message', payload: formData });
     }

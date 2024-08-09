@@ -5,8 +5,9 @@ export const chatDefaultValues = {
     activeContact: null,
     activeMessages: [],
     lastMessageSent: null,
+    sendMessageSuccess: false,
     selectedEmoji: '',
-    error: null
+    error: null,
 };
 
 export async function chatReducer(prev, action) {
@@ -38,6 +39,7 @@ export async function chatReducer(prev, action) {
                 ...prev,
                 activeMessages: [...prev.activeMessages],
                 lastMessageSent: data,
+                sendMessageSuccess: true,
                 error
             };
         }
@@ -48,16 +50,37 @@ export async function chatReducer(prev, action) {
                 activeMessages: [...prev.activeMessages]
             };
         }
-        case 'set/activeContact': {
+        case 'update/contacts/last-message': {
+            const contactIndex = prev.contacts.findIndex(contact => (contact.id === action.newMessage.senderId || contact.id === action.newMessage.receiverId));
+
+            if (contactIndex !== -1) {
+                prev.contacts[contactIndex].lastMessage = action.newMessage;
+            }
             return {
                 ...prev,
-                activeContact: action.activeContact
+                contacts: [...prev.contacts]
+            };
+        };
+        case 'set/activeContact': {
+            const lastMessage = action.activeContact.lastMessage;
+            if (lastMessage) {
+                lastMessage.status = 'seen';
+            }
+            return {
+                ...prev,
+                activeContact: {...action.activeContact, lastMessage},
             };
         }
         case 'set/selectedEmoji': {
             return {
                 ...prev,
                 selectedEmoji: new String(action.selectedEmoji)
+            }
+        }
+        case 'clear/sendMessageSuccess': {
+            return {
+                ...prev,
+                sendMessageSuccess: false
             }
         }
         default: {
