@@ -6,6 +6,7 @@ import { useSettings, useDispatchSettings } from 'providers/settings';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
 import { AbsoluteProvider } from 'providers/absolute';
+import NotificationAlertAbsolute from 'components/NotificationAlertAbsolute';
 
 const options = {
   position: positions.BOTTOM_CENTER,
@@ -27,6 +28,7 @@ const MainLayout = () => {
           <AbsoluteProvider>
             <AlertProvider template={AlertTemplate} {...options}>
               <Outlet />
+              <NotificationAlertAbsolute />
             </AlertProvider>
           </AbsoluteProvider>
         </main>

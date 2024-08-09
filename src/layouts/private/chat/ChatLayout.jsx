@@ -7,7 +7,6 @@ import LeftSidebarChatWrapper from 'components/private/chat/left-sidebar/LeftSid
 import MainChatWrapper from 'components/private/chat/main/MainChatWrapper';
 import EmojiPickerAbsolute from 'components/EmojiPickerAbsolute';
 import ImagePreviewDisplayAbsolute from 'components/ImagePreviewDisplayAbsolute';
-import NotificationAlertAbsolute from 'components/NotificationAlertAbsolute';
 import { SocketProvider } from 'providers/socket';
 import { socket } from 'utils/socket';
 
@@ -37,7 +36,6 @@ const ChatLayout = () => {
                     <MainChatWrapper />
                     <EmojiPickerAbsolute />
                     <ImagePreviewDisplayAbsolute />
-                    <NotificationAlertAbsolute />
                     {/* Right sidebar (More contact information). Will be implemented in the future. */}
                 </main>
             </SocketProvider>

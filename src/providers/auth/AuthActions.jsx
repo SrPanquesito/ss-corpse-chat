@@ -83,4 +83,18 @@ const authStatusFromCookies = () => {
     return values
 }
 
-export { userRegister, userLogin, authStatusFromCookies };
+const deleteAuthCookie = () => {
+    deleteCookie('authToken');
+    return {
+        user: {},
+        isAuthenticated: false,
+        error: null
+    };
+}
+
+export {
+    userRegister,
+    userLogin,
+    authStatusFromCookies,
+    deleteAuthCookie
+};
