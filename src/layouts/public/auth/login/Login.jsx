@@ -4,6 +4,7 @@ import FormInputField from 'components/form/FormInputField';
 import FormButton from 'components/form/FormButton';
 import { useDispatchAuth, useAuth } from 'providers/auth/AuthProvider';
 import { useAlert } from 'react-alert'
+import { ROUTES } from 'utils/constants';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Login = () => {
         if (isAuthenticated && authenticatedUser?.id) {
             alert.success('Login successful');
             setTimeout(() => {
-                navigate('/home');
+                navigate(ROUTES.CHAT_ROUTE);
             }, 2000);
         }
         if (authenticatedError?.message) {
@@ -41,7 +42,7 @@ const Login = () => {
         formData.append('password', password);
 
         dispatchAuth({
-            type: 'login',
+            type: 'http/auth/login',
             data: formData
         });
     };
@@ -87,7 +88,7 @@ const Login = () => {
                             className="text-sm text-sky-800 dark:text-zinc-100 
                             hover:underline underline-offset-2 decoration-dotted
                             "
-                            to="/auth/register"
+                            to={ROUTES.REGISTER_ROUTE}
                         >
                             Don't have any account? Sign up here
                         </Link>

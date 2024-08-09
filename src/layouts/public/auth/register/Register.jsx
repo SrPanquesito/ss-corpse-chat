@@ -5,6 +5,7 @@ import FormInputField from 'components/form/FormInputField';
 import FormButton from 'components/form/FormButton';
 import { useDispatchAuth, useAuth } from 'providers/auth/AuthProvider';
 import { useAlert } from 'react-alert'
+import { ROUTES } from 'utils/constants';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Register = () => {
         if (isAuthenticated && authenticatedUser?.id) {
             alert.success('Registration successful');
             setTimeout(() => {
-                navigate('/home');
+                navigate(ROUTES.CHAT_ROUTE);
             }, 2000);
         }
         if (authenticatedError?.message) {
@@ -59,10 +60,10 @@ const Register = () => {
         formData.append('email', email);
         formData.append('password', password);
         formData.append('confirmPassword', confirmPassword);
-        formData.append('image', image);
+        formData.append('file', image);
 
         dispatchAuth({
-            type: 'register',
+            type: 'http/auth/register',
             data: formData
         });
     };
@@ -141,7 +142,7 @@ const Register = () => {
                             className="text-sm text-sky-800 dark:text-zinc-100 
                             hover:underline underline-offset-2 decoration-dotted
                             "
-                            to="/auth/login"
+                            to={ROUTES.LOGIN_ROUTE}
                         >
                             Login to your account
                         </Link>

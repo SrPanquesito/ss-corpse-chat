@@ -12,7 +12,8 @@ export default defineConfig({
       components: '/src/components',
       providers: '/src/providers',
       hooks: '/src/hooks',
-      middlewares: '/src/middlewares'
+      middlewares: '/src/middlewares',
+      utils: '/src/utils'
     }
   }
 })

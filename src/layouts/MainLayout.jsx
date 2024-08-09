@@ -3,9 +3,9 @@ import {
     Outlet
   } from 'react-router-dom';
 import { useSettings, useDispatchSettings } from 'providers/settings';
-import ButtonDarkmode from 'components/ButtonDarkmode';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
+import { AbsoluteProvider } from 'providers/absolute';
 
 const options = {
   position: positions.BOTTOM_CENTER,
@@ -24,12 +24,11 @@ const MainLayout = () => {
   
     return (
         <main className={'h-screen ' + (settings.darkmode ? 'dark' : '')}>
-          <header className="fixed top-3 right-3 z-50">
-            <ButtonDarkmode />
-          </header>
-          <AlertProvider template={AlertTemplate} {...options}>
-            <Outlet />
-          </AlertProvider>
+          <AbsoluteProvider>
+            <AlertProvider template={AlertTemplate} {...options}>
+              <Outlet />
+            </AlertProvider>
+          </AbsoluteProvider>
         </main>
     )
 }

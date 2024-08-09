@@ -6,9 +6,10 @@ import Login from 'layouts/public/auth/login/Login'
 import Register from 'layouts/public/auth/register/Register';
 import MainLayout from 'layouts/MainLayout';
 import AuthLayout from 'layouts/public/auth/AuthLayout';
-import HomeLayout from 'layouts/private/HomeLayout';
+import ChatLayout from 'layouts/private/chat/ChatLayout';
 import ProtectedPrivateRoute from 'middlewares/ProtectedPrivateRoute';
 import ProtectedPublicRoute from 'middlewares/ProtectedPublicRoute';
+import { ROUTES } from 'utils/constants';
 
 const RouterConfig = createBrowserRouter([
     {
@@ -17,7 +18,7 @@ const RouterConfig = createBrowserRouter([
       children: [
         {
           index: true,
-          loader: () => redirect('/home')
+          loader: () => redirect(ROUTES.CHAT_ROUTE)
         },
         {
           path: 'auth',
@@ -25,29 +26,33 @@ const RouterConfig = createBrowserRouter([
           children: [
             {
               index: true,
-              element: <AuthLayout />
+              loader: () => redirect(ROUTES.LOGIN_ROUTE)
             },
             {
               path: 'register',
-              element: <Register />
+              element: <AuthLayout><Register /></AuthLayout>
             },
             {
               path: 'login',
-              element: <Login />
+              element: <AuthLayout><Login /></AuthLayout>
             }
           ]
         },
         {
-          path: 'home',
+          path: 'chat',
           element: <ProtectedPrivateRoute />,
           children: [
             {
               index: true,
-              element: <HomeLayout />
+              element: <ChatLayout />
             }
           ]
         }
       ]
+    },
+    {
+      path: '*',
+      loader: () => redirect(ROUTES.CHAT_ROUTE)
     }
 ]);
 
