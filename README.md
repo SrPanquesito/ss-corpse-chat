@@ -130,11 +130,11 @@ Icons used:
 - [x] Notification alert in top right side
 - [x] Logout
 - [x] Configure husky pre-commit with linter
-- [ ] Fix linter errors and warnings
+- [x] Fix linter errors and warnings
+- [x] Configure jest
 
 ## To-Do
 
-- [ ] Configure jest
 - [ ] Unit tests 90% + coverage
 - [ ] Form validation in Register page
 - [ ] Limit calls to BE in Register page
@@ -162,6 +162,9 @@ This is an example of how to list things you need to use the software and how to
   ```sh
   npm install npm@latest -g
   ```
+
+Mocking modules with vite-jest is different from commonjs tests. Please read next information before working on tests.
+[https://github.com/sodatea/vite-jest/tree/main/packages/vite-jest#limitations-and-differences-with-commonjs-tests](https://github.com/sodatea/vite-jest/tree/main/packages/vite-jest#limitations-and-differences-with-commonjs-tests)
 
 ### Installation
 

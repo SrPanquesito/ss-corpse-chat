@@ -11,14 +11,17 @@ module.exports = {
     "overrides": [
         {
             "env": {
-                "node": true
+                "node": true,
+                "jest": true
             },
             "files": [
-                ".eslintrc.{js,cjs}"
+                ".eslintrc.{js,cjs}",
+                "**/*.test.js"
             ],
             "parserOptions": {
-                "sourceType": "script"
-            }
+                "sourceType": "module"
+            },
+            "plugins": ["jest"]
         }
     ],
     "parserOptions": {
@@ -35,9 +38,11 @@ module.exports = {
     "ignorePatterns": [
         "tailwind.config.js",
         "postcss.config.js",
+        "jest.config.js",
         "node_modules/*",
         "build/*",
         "dist/*",
-        ".husky/*"
+        ".husky/*",
+        "coverage/*"
     ]
 }
