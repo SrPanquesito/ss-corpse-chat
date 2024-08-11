@@ -52,8 +52,10 @@ const UserMessage = ({id, content, date, imageUrl}) => {
 }
 
 UserMessage.propTypes = {
-    content: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired
+    id: PropTypes.string.isRequired,
+    content: PropTypes.string,
+    date: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string
 }
 
-export default UserMessage
+export default UserMessage;

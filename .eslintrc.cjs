@@ -31,5 +31,13 @@ module.exports = {
     "rules": {
         "react/no-unescaped-entities": "off",
         "quotes": [2, "single", { "avoidEscape": true }]
-    }
+    },
+    "ignorePatterns": [
+        "tailwind.config.js",
+        "postcss.config.js",
+        "node_modules/*",
+        "build/*",
+        "dist/*",
+        ".husky/*"
+    ]
 }

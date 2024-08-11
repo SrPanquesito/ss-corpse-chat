@@ -129,16 +129,17 @@ Icons used:
 - [x] Show last message sent (conversation list)
 - [x] Notification alert in top right side
 - [x] Logout
+- [x] Configure husky pre-commit with linter
+- [ ] Fix linter errors and warnings
 
 ## To-Do
 
-- [ ] Configure husky pre-commit with linter
 - [ ] Configure jest
+- [ ] Unit tests 90% + coverage
 - [ ] Form validation in Register page
 - [ ] Limit calls to BE in Register page
 - [ ] Form validation in Login page
 - [ ] Limit calls to BE in Login page
-- [ ] Reeplace alert pop-up for homemade alert
 - [ ] Limit calls to BE when sending message
 - [ ] Send more than 1 image
 - [ ] File handling

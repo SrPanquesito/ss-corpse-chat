@@ -1,6 +1,6 @@
 import { useAuth } from 'providers/auth';
 
-export default () => {
+const LoggedUserHeaderWrapper = () => {
     const {user} = useAuth();
     const welcomeMessage = `Hi, ${user.username}`;
     const profilePicture = user?.profilePictureUrl || 'src/assets/images/logo.png';
@@ -65,3 +65,5 @@ export default () => {
         </>
     )
 };
+
+export default LoggedUserHeaderWrapper;

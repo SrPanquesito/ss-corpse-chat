@@ -5,7 +5,7 @@ const SERVER_URL = import.meta.env.VITE_CORPSE_SERVER_BASE_URL;
 const getAllContacts = async () => {
     try {
         const response = await axios.get(SERVER_URL + '/api/chat/contacts');
-        const { success, errorMessage, data } = response.data;
+        const { data } = response.data;
 
         return {
             data,
@@ -25,7 +25,7 @@ const getAllContacts = async () => {
 const getAllMessagesByContactId = async ({ id }) => {
     try {
         const response = await axios.get(SERVER_URL + `/api/chat/contact/${id}/messages`);
-        let { success, errorMessage, data } = response.data;
+        let { data } = response.data;
         data = Array.isArray(data) ? data : [];
 
         return {

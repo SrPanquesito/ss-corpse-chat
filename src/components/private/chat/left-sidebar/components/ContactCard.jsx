@@ -94,7 +94,9 @@ ContactCard.propTypes = {
     id: PropTypes.string.isRequired,
     username: PropTypes.string.isRequired,
     profilePictureUrl: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired
+    onClick: PropTypes.func.isRequired,
+    activeContactId: PropTypes.string,
+    lastMessage: PropTypes.object
 }
 
 export default ContactCard

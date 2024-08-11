@@ -3,7 +3,7 @@ import ContactCard from 'components/private/chat/left-sidebar/components/Contact
 import { useChat, useDispatchChat } from 'providers/chat';
 import { useSocketData } from 'providers/socket';
 
-export default () => {
+const ContactsListWrapper = () => {
     const chat = useChat();
     const dispatchChat = useDispatchChat();
     const socketData = useSocketData();
@@ -52,3 +52,5 @@ export default () => {
         </div>
     )
 };
+
+export default ContactsListWrapper;

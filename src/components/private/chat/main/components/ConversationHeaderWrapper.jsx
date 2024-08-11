@@ -8,7 +8,7 @@ import { useDispatchAbsolute } from 'providers/absolute';
 import { socket } from 'utils/socket';
 import { ROUTES } from 'utils/constants';
 
-export default () => {
+const ConversationHeaderWrapper = () => {
     const chat = useChat();
     const socketData = useSocketData();
     const profilePicture = chat.activeContact?.profilePictureUrl || 'src/assets/images/logo.png';
@@ -25,7 +25,7 @@ export default () => {
         }
     }, [chat.activeContact, socketData.onlineUsers]);
 
-    const onLogoutHandler = (e) => {
+    const onLogoutHandler = () => {
         socket.timeout(5000).emit('logout', auth.user.id);
         dispatchAuth({ type: 'auth/logout' });
         dispatchAbsolute({ type: 'notificationalert/show', notificationAlertOptions: {
@@ -58,7 +58,7 @@ export default () => {
                     <h4 className="text-slate-800 dark:text-zinc-200 font-semibold text-base lg:text-lg truncate max-w-[75%] cursor-pointer">
                         {chat.activeContact?.username || ''}
                     </h4>
-                    <span className={(isOnline ? "text-green-500 dark:text-green-700" : "text-gray-400 dark:text-gray-500") + " absolute bottom-0 text-xs font-normal truncate"}>
+                    <span className={(isOnline ? 'text-green-500 dark:text-green-700' : 'text-gray-400 dark:text-gray-500') + ' absolute bottom-0 text-xs font-normal truncate'}>
                         {isOnline ? 'Online' : 'Offline'}
                     </span>
                 </div>
@@ -100,3 +100,5 @@ export default () => {
         </nav>
     )
 }
+
+export default ConversationHeaderWrapper;

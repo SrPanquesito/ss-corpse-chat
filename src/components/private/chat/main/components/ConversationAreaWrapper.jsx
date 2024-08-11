@@ -6,7 +6,7 @@ import ContactMessage from './ContactMessage';
 import { useSocketData } from 'providers/socket';
 import { useDispatchAbsolute } from 'providers/absolute';
 
-export default () => {
+const ConversationAreaWrapper = () => {
     const auth = useAuth();
     const chat = useChat();
     const dispatchChat = useDispatchChat();
@@ -90,3 +90,5 @@ export default () => {
         </div>
     )
 }
+
+export default ConversationAreaWrapper;

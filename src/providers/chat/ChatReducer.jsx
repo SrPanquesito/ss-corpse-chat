@@ -71,7 +71,7 @@ export async function chatReducer(prev, action) {
                 allContacts: [...prev.contacts],
                 contacts: [...prev.contacts]
             };
-        };
+        }
         case 'set/activeContact': {
             const lastMessage = action.activeContact.lastMessage;
             if (lastMessage) {

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, createContext, useContext, useReducer } from 'react';
+import { useEffect, createContext, useContext, useReducer } from 'react';
 import { socket } from 'utils/socket';
 
 const SocketContext = createContext(null);

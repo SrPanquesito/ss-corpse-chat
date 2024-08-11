@@ -1,4 +1,5 @@
 import ButtonDarkmode from 'components/ButtonDarkmode';
+import PropTypes from 'prop-types';
 
 const AuthLayout = ({ children }) => {
     return (
@@ -20,6 +21,10 @@ const AuthLayout = ({ children }) => {
         </section>
       </>
     );
+}
+
+AuthLayout.propTypes = {
+  children: PropTypes.node.isRequired
 }
 
 export default AuthLayout;
