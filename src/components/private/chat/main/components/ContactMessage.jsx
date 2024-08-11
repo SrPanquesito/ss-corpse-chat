@@ -58,8 +58,11 @@ const ContactMessage = ({id, content, date, profilePictureUrl, imageUrl}) => {
 }
 
 ContactMessage.propTypes = {
-    content: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired
+    id: PropTypes.string.isRequired,
+    content: PropTypes.string,
+    date: PropTypes.string.isRequired,
+    profilePictureUrl: PropTypes.string,
+    imageUrl: PropTypes.string
 }
 
 export default ContactMessage

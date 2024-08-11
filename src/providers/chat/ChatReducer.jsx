@@ -1,7 +1,9 @@
 import { getAllContacts, getAllMessagesByContactId, sendMessage } from './ChatActions';
 
 export const chatDefaultValues = {
+    allContacts: [],
     contacts: [],
+    retrievedInitialContacts: false,
     activeContact: null,
     activeMessages: [],
     lastMessageSent: null,
@@ -17,7 +19,9 @@ export async function chatReducer(prev, action) {
 
             return {
                 ...prev,
+                allContacts: data,
                 contacts: data,
+                retrievedInitialContacts: true,
                 error
             };
         }
@@ -50,6 +54,12 @@ export async function chatReducer(prev, action) {
                 activeMessages: [...prev.activeMessages]
             };
         }
+        case 'update/contacts': {
+            return {
+                ...prev,
+                contacts: action.contacts
+            };
+        }
         case 'update/contacts/last-message': {
             const contactIndex = prev.contacts.findIndex(contact => (contact.id === action.newMessage.senderId || contact.id === action.newMessage.receiverId));
 
@@ -58,9 +68,10 @@ export async function chatReducer(prev, action) {
             }
             return {
                 ...prev,
+                allContacts: [...prev.contacts],
                 contacts: [...prev.contacts]
             };
-        };
+        }
         case 'set/activeContact': {
             const lastMessage = action.activeContact.lastMessage;
             if (lastMessage) {

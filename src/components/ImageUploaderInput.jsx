@@ -1,4 +1,6 @@
-export default ({ onChangeHandler, onClickHandler }) => {
+import PropTypes from 'prop-types';
+
+const ImageUploaderInput = ({ onChangeHandler, onClickHandler }) => {
     return (
         <>
             <input 
@@ -25,3 +27,10 @@ export default ({ onChangeHandler, onClickHandler }) => {
         </>
     )
 }
+
+ImageUploaderInput.propTypes = {
+    onChangeHandler: PropTypes.func.isRequired,
+    onClickHandler: PropTypes.func.isRequired
+}
+
+export default ImageUploaderInput;

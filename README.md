@@ -98,28 +98,21 @@ Icons used:
 
 
 <!-- ROADMAP -->
-## Roadmap (To-do)
-Or where did I last leave the project?
+## Roadmap (Finished tasks)
 
 - [x] Routing and context configuration
 - [x] Tailwind configuration (Palette, fonts, etc)
 - [x] Darkmode configuration
 - [x] Configure linter
-- [ ] Configure jest
 - [x] Register page
     - [x] CSS
     - [x] Form handling
-    - [ ] Form validation
     - [x] Backend connection
-    - [ ] Limit calls to BE
-- [ ] Login page
+- [x] Login page
     - [x] CSS
     - [x] Form handling
-    - [ ] Form validation
     - [x] Backend connection
-    - [ ] Limit calls to BE
 - [x] Configure material tailwind to use alert pop-up for errors
-- [ ] Reeplace alert pop-up for homemade alert
 - [x] Protect and redirect routes
 - [x] Retrieve user data from localStorage JWT
 - [x] UI for ChatLayout and separate into components
@@ -131,8 +124,25 @@ Or where did I last leave the project?
 - [x] Display images in messages
 - [x] Smooth scroll when sending message, clear input field, hide emoji picker when clicked outside component
 - [x] Show selected image before sending message (one image only for now)
-- [ ] Create css bubble dialog style for image previewer
-- [ ] Adjust image previewer to render absolute position according to the width of the screen
+- [x] Create css bubble dialog style for image previewer
+- [x] Adjust image previewer to render absolute position according to the width of the screen
+- [x] Show last message sent (conversation list)
+- [x] Notification alert in top right side
+- [x] Logout
+- [x] Configure husky pre-commit with linter
+- [x] Fix linter errors and warnings
+- [x] Configure jest
+
+## To-Do
+
+- [ ] Unit tests 90% + coverage
+- [ ] Form validation in Register page
+- [ ] Limit calls to BE in Register page
+- [ ] Form validation in Login page
+- [ ] Limit calls to BE in Login page
+- [ ] Limit calls to BE when sending message
+- [ ] Send more than 1 image
+- [ ] File handling
 
 See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
 
@@ -152,6 +162,9 @@ This is an example of how to list things you need to use the software and how to
   ```sh
   npm install npm@latest -g
   ```
+
+Mocking modules with vite-jest is different from commonjs tests. Please read next information before working on tests.
+[https://github.com/sodatea/vite-jest/tree/main/packages/vite-jest#limitations-and-differences-with-commonjs-tests](https://github.com/sodatea/vite-jest/tree/main/packages/vite-jest#limitations-and-differences-with-commonjs-tests)
 
 ### Installation
 

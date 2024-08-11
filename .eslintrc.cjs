@@ -11,14 +11,17 @@ module.exports = {
     "overrides": [
         {
             "env": {
-                "node": true
+                "node": true,
+                "jest": true
             },
             "files": [
-                ".eslintrc.{js,cjs}"
+                ".eslintrc.{js,cjs}",
+                "**/*.test.js"
             ],
             "parserOptions": {
-                "sourceType": "script"
-            }
+                "sourceType": "module"
+            },
+            "plugins": ["jest"]
         }
     ],
     "parserOptions": {
@@ -31,5 +34,15 @@ module.exports = {
     "rules": {
         "react/no-unescaped-entities": "off",
         "quotes": [2, "single", { "avoidEscape": true }]
-    }
+    },
+    "ignorePatterns": [
+        "tailwind.config.js",
+        "postcss.config.js",
+        "jest.config.js",
+        "node_modules/*",
+        "build/*",
+        "dist/*",
+        ".husky/*",
+        "coverage/*"
+    ]
 }

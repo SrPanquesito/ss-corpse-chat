@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import MessageInput from 'components/MessageInput';
-import FileUploaderInput from 'components/FileUploaderInput';
 import ImageUploaderInput from 'components/ImageUploaderInput';
 import { useChat, useDispatchChat } from 'providers/chat';
 import { useAuth } from 'providers/auth';
@@ -9,7 +8,7 @@ import { useDispatchAbsolute } from 'providers/absolute';
 import { socket } from 'utils/socket';
 import { uploadSingleImageToS3 } from 'providers/chat/ChatActions';
 
-export default () => {
+const SendMessageWrapper = () => {
     const [messageText, setMessageText] = useState('');
     const [messageFile, setMessageFile] = useState('');
     const chat = useChat();
@@ -56,7 +55,7 @@ export default () => {
 
         // Upload image to S3 and send image Url to socket and message creation in DB
         if (file) {
-            const {data, error} = await uploadSingleImageToS3(formData);
+            const {data} = await uploadSingleImageToS3(formData);
             imageUrl = data;
             formData.append('imageUrl', imageUrl);
         }
@@ -130,3 +129,5 @@ export default () => {
         </footer>
     )
 }
+
+export default SendMessageWrapper;

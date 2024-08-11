@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
 import { setCookie, getCookie, deleteCookie } from 'utils/cookies';
 
 const SERVER_URL = import.meta.env.VITE_CORPSE_SERVER_BASE_URL;
@@ -7,7 +7,7 @@ const SERVER_URL = import.meta.env.VITE_CORPSE_SERVER_BASE_URL;
 const userRegister = async (payload) => {
     try {
         const response = await axios.post(SERVER_URL + '/api/auth/register', payload);
-        const { success, errorMessage, data: {token} } = response.data;
+        const { data: {token} } = response.data;
         setCookie('authToken', token, 365);
 
         const { user } = authStatusFromCookies();
@@ -33,7 +33,7 @@ const userRegister = async (payload) => {
 const userLogin = async(payload) => {
     try {
         const response = await axios.post(SERVER_URL + '/api/auth/login', payload)
-        const { success, errorMessage, data: {token} } = response.data;
+        const { data: {token} } = response.data;
         setCookie('authToken', token, 365);
 
         const { user } = authStatusFromCookies();
@@ -83,4 +83,18 @@ const authStatusFromCookies = () => {
     return values
 }
 
-export { userRegister, userLogin, authStatusFromCookies };
+const deleteAuthCookie = () => {
+    deleteCookie('authToken');
+    return {
+        user: {},
+        isAuthenticated: false,
+        error: null
+    };
+}
+
+export {
+    userRegister,
+    userLogin,
+    authStatusFromCookies,
+    deleteAuthCookie
+};

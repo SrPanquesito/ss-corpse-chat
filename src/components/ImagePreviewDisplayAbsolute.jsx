@@ -1,16 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
-import { useAbsolute, useDispatchAbsolute } from 'providers/absolute';
+import { useAbsolute } from 'providers/absolute';
 
-export default () => {
+const ImagePreviewDisplayAbsolute = () => {
     const refWrapper = useRef();
     const { showImagePreviewDisplay, positionCoordsImagePreviewDisplay: positionCoords, dataImagePreviewDisplay: images } = useAbsolute();
-    const dispatchAbsolute = useDispatchAbsolute();
     const [ position, setPosition ] = useState([0,0]);
 
     useEffect(() => {
-        document.addEventListener("click", handleClickOutside, false);
+        document.addEventListener('click', handleClickOutside, false);
         return () => {
-          document.removeEventListener("click", handleClickOutside, false);
+          document.removeEventListener('click', handleClickOutside, false);
         };
     }, []);
 
@@ -37,11 +36,11 @@ export default () => {
             style={{
                 left: position[0],
                 top: position[1],
-                tranform: "translateX(-50%)",
-                transform: "translateY(-50%)",
+                tranform: 'translateX(-50%)',
+                transform: 'translateY(-50%)',
             }}
         >
-            <div className={`${showImagePreviewDisplay ? `block ` : `hidden `}
+            <div className={`${showImagePreviewDisplay ? 'block ' : 'hidden '}
                 w-auto md:w-auto
                 relative
                 p-2
@@ -102,3 +101,5 @@ export default () => {
         </div>
     );
 };
+
+export default ImagePreviewDisplayAbsolute;

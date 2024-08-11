@@ -1,6 +1,6 @@
 import { useAuth } from 'providers/auth';
 
-export default () => {
+const LoggedUserHeaderWrapper = () => {
     const {user} = useAuth();
     const welcomeMessage = `Hi, ${user.username}`;
     const profilePicture = user?.profilePictureUrl || 'src/assets/images/logo.png';
@@ -35,7 +35,7 @@ export default () => {
                         `}></div>
                 </div>
                 <h4 className="text-slate-800 dark:text-zinc-200 font-bold text-base lg:text-xl truncate max-w-[50%]">{welcomeMessage}</h4>
-                <div className="flex items-center relative ml-auto">
+                {/* <div className="flex items-center relative ml-auto">
                     <a className="flex items-center justify-center w-8 h-8 cursor-pointer rounded-[50%] shadow-tiny transition-all 
                                     bg-slate-200
                                     border
@@ -60,8 +60,10 @@ export default () => {
                             <path strokeLinecap="round" strokeLinejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                         </svg>
                     </a>
-                </div>
+                </div> */}
             </div>
         </>
     )
 };
+
+export default LoggedUserHeaderWrapper;

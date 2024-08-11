@@ -1,4 +1,4 @@
-import { userRegister, userLogin } from './AuthActions';
+import { userRegister, userLogin, deleteAuthCookie } from './AuthActions';
 
 export const authDefaultValues = {
     user: {},
@@ -26,6 +26,12 @@ export const authReducer = async (authData, action) => {
                 user: data,
                 isAuthenticated: !!data?.token,
                 error
+            }
+        }
+        case 'auth/logout': {
+            const data = deleteAuthCookie();
+            return {
+                ...data
             }
         }
         case 'manual/setup': {

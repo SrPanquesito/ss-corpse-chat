@@ -2,7 +2,7 @@ import ConversationHeaderWrapper from './components/ConversationHeaderWrapper';
 import ConversationAreaWrapper from './components/ConversationAreaWrapper';
 import SendMessageWrapper from './components/SendMessageWrapper';
 
-export default () => {
+const MainChatWrapper = () => {
     return (
         <section className="flex flex-col justify-between items-center grow h-screen shadow">
             <ConversationHeaderWrapper />
@@ -11,3 +11,5 @@ export default () => {
         </section>
     )
 }
+
+export default MainChatWrapper;

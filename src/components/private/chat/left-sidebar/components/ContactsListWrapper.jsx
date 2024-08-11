@@ -1,19 +1,27 @@
 import { useEffect } from 'react';
 import ContactCard from 'components/private/chat/left-sidebar/components/ContactCard';
 import { useChat, useDispatchChat } from 'providers/chat';
+import { useSocketData } from 'providers/socket';
 
-export default () => {
+const ContactsListWrapper = () => {
     const chat = useChat();
     const dispatchChat = useDispatchChat();
+    const socketData = useSocketData();
 
     useEffect(() => {
-        if (chat.contacts?.length === 0 && !chat.error) {
+        if (chat.contacts?.length === 0 && !chat.error && !chat.retrievedInitialContacts) {
             dispatchChat({ type: 'http/get/contacts' });
         }
         if (chat.contacts?.length > 0 && !chat.activeContact) {
             dispatchChat({ type: 'set/activeContact', activeContact: chat.contacts[0] });
         }
     }, [chat.contacts, chat.error]);
+
+    useEffect(() => {
+        if (socketData.newOnlineUser && chat.allContacts?.length > 0) {
+            dispatchChat({ type: 'http/get/contacts' });
+        }
+    }, [socketData.newOnlineUser]);
 
     const onContactClick = (contact) => {
         dispatchChat({ type: 'set/activeContact', activeContact: contact });
@@ -44,3 +52,5 @@ export default () => {
         </div>
     )
 };
+
+export default ContactsListWrapper;

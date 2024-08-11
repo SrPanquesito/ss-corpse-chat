@@ -4,7 +4,7 @@ import { useSettings } from 'providers/settings';
 import { useAbsolute, useDispatchAbsolute } from 'providers/absolute';
 import { useDispatchChat } from 'providers/chat';
 
-export default () => {
+const EmojiPickerAbsolute = () => {
     const refWrapper = useRef();
     const { darkmode } = useSettings();
     const { showEmojiPicker } = useAbsolute();
@@ -16,9 +16,9 @@ export default () => {
     };
 
     useEffect(() => {
-        document.addEventListener("click", handleClickOutside, false);
+        document.addEventListener('click', handleClickOutside, false);
         return () => {
-          document.removeEventListener("click", handleClickOutside, false);
+          document.removeEventListener('click', handleClickOutside, false);
         };
       }, []);
 
@@ -43,3 +43,5 @@ export default () => {
         </div>
     );
 };
+
+export default EmojiPickerAbsolute;

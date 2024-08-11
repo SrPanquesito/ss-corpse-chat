@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useAbsolute, useDispatchAbsolute } from "providers/absolute";
+import { useEffect } from 'react';
+import { useAbsolute, useDispatchAbsolute } from 'providers/absolute';
 
-export default () => {
+const NotificationAlertAbsolute = () => {
     const { showNotificationAlert, notificationAlertOptions } = useAbsolute();
     const dispatch = useDispatchAbsolute();
 
@@ -13,10 +13,10 @@ export default () => {
         }
     }, [showNotificationAlert]);
 
-    const success = "bg-green-500 text-green-100";
-    const error = "bg-red-500 text-red-100";
-    const warning = "bg-yellow-500 text-yellow-100";
-    const info = "bg-blue-500 text-blue-100";
+    const success = 'bg-green-500 text-green-100';
+    const error = 'bg-red-500 text-red-100';
+    const warning = 'bg-yellow-500 text-yellow-100';
+    const info = 'bg-blue-500 text-blue-100';
 
     const successIcon = (
         <svg className="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -42,16 +42,16 @@ export default () => {
     return (
         <div 
             className={`
-                ${showNotificationAlert ? `z-50 ` : `-z-10 `}
+                ${showNotificationAlert ? 'z-50 ' : '-z-10 '}
                 absolute right-2 top-2
             `}
         >
             <div className={`
-                    ${notificationAlertOptions.type === "success" && success}
-                    ${notificationAlertOptions.type === "error" && error}
-                    ${notificationAlertOptions.type === "warning" && warning}
-                    ${notificationAlertOptions.type === "info" && info}
-                    ${showNotificationAlert ? `visible opacity-100 ` : `invisible opacity-0 `}
+                    ${notificationAlertOptions.type === 'success' && success}
+                    ${notificationAlertOptions.type === 'error' && error}
+                    ${notificationAlertOptions.type === 'warning' && warning}
+                    ${notificationAlertOptions.type === 'info' && info}
+                    ${showNotificationAlert ? 'visible opacity-100 ' : 'invisible opacity-0 '}
                     flex
                     justify-center items-center
                     p-3
@@ -65,20 +65,20 @@ export default () => {
                     transition-opacity
                 `}>
                     <div className="flex items-center justify-center w-1/6">
-                        {notificationAlertOptions.type === "success" && successIcon}
-                        {notificationAlertOptions.type === "error" && errorIcon}
-                        {notificationAlertOptions.type === "warning" && warningIcon}
-                        {notificationAlertOptions.type === "info" && infoIcon}
+                        {notificationAlertOptions.type === 'success' && successIcon}
+                        {notificationAlertOptions.type === 'error' && errorIcon}
+                        {notificationAlertOptions.type === 'warning' && warningIcon}
+                        {notificationAlertOptions.type === 'info' && infoIcon}
                     </div>
                     <div className="flex flex-row items-center gap-2 w-5/6">
                         <h1 className="
                             font-semibold
                             text-sm
                         ">
-                            {notificationAlertOptions.type === "success" && "Success:"}
-                            {notificationAlertOptions.type === "error" && "Error:"}
-                            {notificationAlertOptions.type === "warning" && "Warning:"}
-                            {notificationAlertOptions.type === "info" && "Info:"}
+                            {notificationAlertOptions.type === 'success' && 'Success:'}
+                            {notificationAlertOptions.type === 'error' && 'Error:'}
+                            {notificationAlertOptions.type === 'warning' && 'Warning:'}
+                            {notificationAlertOptions.type === 'info' && 'Info:'}
                         </h1>
                         <span className="
                             font-normal 
@@ -93,3 +93,5 @@ export default () => {
         </div>
     )
 }
+
+export default NotificationAlertAbsolute;
